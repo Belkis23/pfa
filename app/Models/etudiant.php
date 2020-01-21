@@ -3,10 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Spatie\Permission\Traits\HasRoles;
 class etudiant extends Model
 {
     
+    use HasRoles;
 
     /**
      * The database table used by the model.
