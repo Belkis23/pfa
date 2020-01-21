@@ -1,0 +1,26 @@
+[
+    {
+        "model-name": "classe",
+        "resource-file": "classes.json"
+    },
+    {
+        "model-name": "etudiant",
+        "resource-file": "etudiants.json"
+    },
+    {
+        "model-name": "club",
+        "resource-file": "clubs.json"
+    },
+    {
+        "model-name": "classe_formation",
+        "resource-file": "classe_formations.json"
+    },
+    {
+        "model-name": "membre_club",
+        "resource-file": "membre_clubs.json"
+    },
+    {
+        "model-name": "Post",
+        "resource-file": "posts.json"
+    }
+]
