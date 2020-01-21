@@ -9,6 +9,8 @@ class etudiant extends Model
     
     use HasRoles;
 
+
+
     /**
      * The database table used by the model.
      *
