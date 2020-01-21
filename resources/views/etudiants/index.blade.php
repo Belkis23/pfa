@@ -48,7 +48,6 @@
                             <th>Adresse</th>
                             <th>Classe</th>
                             <th>Email</th>
-                            <th>Password</th>
 
                             <th></th>
                         </tr>
@@ -63,7 +62,6 @@
                             <td>{{ $etudiant->adresse }}</td>
                             <td>{{ optional($etudiant->classe)->created_at }}</td>
                             <td>{{ $etudiant->email }}</td>
-                            <td>{{ $etudiant->password }}</td>
 
                             <td>
 

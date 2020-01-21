@@ -148,11 +148,11 @@ class EtudiantsController extends Controller
         $rules = [
                 'name' => 'string|min:1|max:255|nullable',
             'prenom' => 'string|min:1|nullable',
-            'cin' => 'string|min:1|nullable',
-            'telephone' => 'string|min:1|nullable',
+            'cin' => 'string|min:8|max:8|nullable',
+            'telephone' => 'string|min:8|max:8|nullable',
             'adresse' => 'string|min:1|nullable',
             'classe_id' => 'nullable',
-            'email' => 'nullable',
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:etudiants'],
             'password' => 'nullable',
             'photo' => ['file','nullable'], 
         ];
@@ -167,7 +167,7 @@ class EtudiantsController extends Controller
             $data['photo'] = $this->moveFile($request->file('photo'));
         }
 
-
+        $data['password'] = bcrypt($data['password']);
 
         return $data;
     }

@@ -50,11 +50,4 @@
     </div>
 </div>
 
-<div class="form-group {{ $errors->has('mombre') ? 'has-error' : '' }}">
-    <label for="mombre" class="col-md-2 control-label">Mombre</label>
-    <div class="col-md-10">
-        <input class="form-control" name="mombre" type="text" id="mombre" value="{{ old('mombre', optional($club)->mombre) }}" minlength="1" placeholder="Enter mombre here...">
-        {!! $errors->first('mombre', '<p class="help-block">:message</p>') !!}
-    </div>
-</div>
 

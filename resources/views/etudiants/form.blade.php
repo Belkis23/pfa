@@ -18,7 +18,7 @@
 <div class="form-group {{ $errors->has('cin') ? 'has-error' : '' }}">
     <label for="cin" class="col-md-2 control-label">Cin</label>
     <div class="col-md-10">
-        <input class="form-control" name="cin" type="text" id="cin" value="{{ old('cin', optional($etudiant)->cin) }}" minlength="1" placeholder="Enter cin here...">
+        <input class="form-control" name="cin" type="number" id="cin" value="{{ old('cin', optional($etudiant)->cin) }}" minlength="1" placeholder="Enter cin here...">
         {!! $errors->first('cin', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
@@ -26,7 +26,7 @@
 <div class="form-group {{ $errors->has('telephone') ? 'has-error' : '' }}">
     <label for="telephone" class="col-md-2 control-label">Telephone</label>
     <div class="col-md-10">
-        <input class="form-control" name="telephone" type="text" id="telephone" value="{{ old('telephone', optional($etudiant)->telephone) }}" minlength="1" placeholder="Enter telephone here...">
+        <input class="form-control" name="telephone" type="number" id="telephone" value="{{ old('telephone', optional($etudiant)->telephone) }}" minlength="1" placeholder="Enter telephone here...">
         {!! $errors->first('telephone', '<p class="help-block">:message</p>') !!}
     </div>
 </div>

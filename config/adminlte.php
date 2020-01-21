@@ -194,7 +194,7 @@ return [
             'icon' => 'fas fa-fw fa-lock',
         ],
     [
-            'text' => 'classe_formation',
+            'text' => 'Responsable Club',
             'url'  => 'classe_formations',
             'icon' => 'fas fa-fw fa-lock',
         ],
