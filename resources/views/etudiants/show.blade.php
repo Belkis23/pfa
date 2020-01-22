@@ -39,6 +39,8 @@
 
     <div class="panel-body">
         <dl class="dl-horizontal">
+            <dt>Photo</dt>
+            <dd><img src="{{ asset('thumbs/' . $etudiant->photo) }}">  </dd>
             <dt>Name</dt>
             <dd>{{ $etudiant->name }}</dd>
             <dt>Prenom</dt>
@@ -53,10 +55,9 @@
             <dd>{{ optional($etudiant->classe)->created_at }}</dd>
             <dt>Email</dt>
             <dd>{{ $etudiant->email }}</dd>
-            <dt>Password</dt>
-            <dd>{{ $etudiant->password }}</dd>
-            <dt>Photo</dt>
-            <dd>{{ asset('storage/' . $etudiant->photo) }}</dd>
+           
+            
+            
 
         </dl>
 

@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('/');
 
 Auth::routes();
 
@@ -151,3 +151,11 @@ Route::group([
     Route::delete('/post/{post}','PostsController@destroy')
          ->name('posts.post.destroy')->where('id', '[0-9]+');
 });
+
+
+
+
+
+  Route::get('/loginforme', 'Auth\LoginEtudiantController@showLoginForm')->name('etudiant.form.login');
+
+   Route::post('/loginetudiant', 'Auth\LoginEtudiantController@login')->name('etudiant.login.submit');

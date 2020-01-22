@@ -3,13 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
-class etudiant extends Model
+use Illuminate\Support\Facades\Session;
+class etudiant  extends Authenticatable
 {
     
     use HasRoles;
 
 
+
+
+      protected $guard = 'etudiant';
 
     /**
      * The database table used by the model.
@@ -42,6 +47,14 @@ class etudiant extends Model
                   'photo'
               ];
 
+ /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 
+    ];
     /**
      * The attributes that should be mutated to dates.
      *

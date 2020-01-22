@@ -39,12 +39,13 @@
 
     <div class="panel-body">
         <dl class="dl-horizontal">
+            <dt>Photo</dt>
+          <dd> <img src="{{ url('thumbs/' . $club->photo) }}" style="border-radius: 50%;height:100px;width:100px;">  </dd>
             <dt>Name</dt>
             <dd>{{ $club->name }}</dd>
             <dt>Etudiant</dt>
             <dd>{{ optional($club->etudiant)->name }}</dd>
-            <dt>Photo</dt>
-            <dd>{{ asset('storage/' . $club->photo) }}</dd>
+            
             <dt>Mombre</dt>
             <dd>{{ $club->mombre }}</dd>
 

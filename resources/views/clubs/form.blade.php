@@ -49,5 +49,3 @@
         {!! $errors->first('photo', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
-
-

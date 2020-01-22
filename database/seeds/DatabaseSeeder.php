@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Spatie\Permission\Models\Permission;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,6 +12,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        $permission = new Permission();
+$permission->name = 'president';
+$permission->guard_name = 'etudiant';
+
+$permission->save();
+
+
+$admin = new Permission();
+$admin->name = 'admin';
+$admin->save();
+$user =  \App\User::create([
+            'name' => 'admin',
+            'email' => 'admin@admin.fr',
+            'password' => bcrypt('admin'),
+            
+        ]);
+        $user->givePermissionTo($admin );
     }
 }

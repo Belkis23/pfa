@@ -37,7 +37,7 @@ return [
     | may even configure multiple disks of the same driver. Defaults have
     | been setup for each driver as an example of the required options.
     |
-    | Supported Drivers: "local", "ftp", "sftp", "s3"
+    | Supported Drivers: "local", "ftp", "sftp", "s3", "rackspace"
     |
     */
 
@@ -54,7 +54,16 @@ return [
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
-
+    'images' => [
+        'driver' => 'local',
+        'root' => public_path() . ('/images'),
+        'visibility' => 'public',
+    ],
+    'thumbs' => [
+        'driver' => 'local',
+        'root' => public_path() . ('/thumbs'),
+        'visibility' => 'public',
+    ],
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
