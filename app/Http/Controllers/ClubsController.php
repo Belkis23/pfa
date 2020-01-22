@@ -7,7 +7,10 @@ use App\Models\Etudiant;
 use App\Models\club;
 use Illuminate\Http\Request;
 use Exception;
-
+use Spatie\Permission\Models\Permission;
+use Auth;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image as InterventionImage;
 class ClubsController extends Controller
 {
 
@@ -18,7 +21,13 @@ class ClubsController extends Controller
      */
     public function index()
     {
-        $clubs = club::with('etudiant')->paginate(25);
+
+         if(Auth::guard('etudiant')->check()){
+             $clubs = club::where('etudiant_id',Auth::guard('etudiant')->user()->id)->with('etudiant')->paginate(25);
+         }else{
+            $clubs = club::with('etudiant')->paginate(25); 
+         }
+       
 
         return view('clubs.index', compact('clubs'));
     }
@@ -47,13 +56,18 @@ class ClubsController extends Controller
         try {
             
             $data = $this->getData($request);
+            $data['mombre']= 1;
             
-            club::create($data);
+         $club = club::create($data);
+         $etudiants = Etudiant::find($request->etudiant_id);
+         $president = Permission::where('name','president')->get();
+         $etudiants->givePermissionTo($president);
+
 
             return redirect()->route('clubs.club.index')
                 ->with('success_message', 'Club was successfully added.');
         } catch (Exception $exception) {
-
+dd($exception);
             return back()->withInput()
                 ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request.']);
         }
@@ -159,7 +173,12 @@ class ClubsController extends Controller
             $data['photo'] = null;
         }
         if ($request->hasFile('photo')) {
-            $data['photo'] = $this->moveFile($request->file('photo'));
+            // $data['photo'] = $this->moveFile($request->file('photo'));
+            $path = Storage::disk('images')->put('club/', $request->file('photo'));
+    // Save thumb
+    $img = InterventionImage::make($request->file('photo'))->widen(100);
+    Storage::disk('thumbs')->put($path, $img->encode());
+    $data['photo'] = $path;
         }
 
 

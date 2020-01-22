@@ -171,27 +171,33 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/#69-menu
     |
     */
+    
+
 
     'menu' => [
         [
             'text' => 'section',
             'url'  => 'sections',
             'icon' => 'fas fa-fw fa-lock',
+            'can'  => 'admin',
         ],
         [
             'text' => 'classe',
             'url'  => 'classes',
             'icon' => 'fas fa-fw fa-lock',
+            'can'  => 'admin',
         ],
         [
             'text' => 'etudiant',
             'url'  => 'etudiants',
             'icon' => 'fas fa-fw fa-lock',
+            'can'  => 'admin',
         ],
         [
             'text' => 'club',
             'url'  => 'clubs',
             'icon' => 'fas fa-fw fa-lock',
+            'role'  => 'president,etudiant',
         ],
     [
             'text' => 'classe_formation',

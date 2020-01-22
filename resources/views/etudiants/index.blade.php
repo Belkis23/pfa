@@ -41,6 +41,7 @@
                 <table class="table table-striped ">
                     <thead>
                         <tr>
+                            <th>Photo</th>
                             <th>Name</th>
                             <th>Prenom</th>
                             <th>Cin</th>
@@ -48,7 +49,7 @@
                             <th>Adresse</th>
                             <th>Classe</th>
                             <th>Email</th>
-                            <th>Password</th>
+                           
 
                             <th></th>
                         </tr>
@@ -56,6 +57,13 @@
                     <tbody>
                     @foreach($etudiants as $etudiant)
                         <tr>
+                             <td class="margin">
+                                @if($etudiant->photo == null)
+                                <img src="https://images.squarespace-cdn.com/content/v1/5accd58989c17259a7bc8808/1567774856523-4AU5CG7TK1EH74BKGLBM/ke17ZwdGBToddI8pDm48kAf-OpKpNsh_OjjU8JOdDKBZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpwkCFOLgzJj4yIx-vIIEbyWWRd0QUGL6lY_wBICnBy59Ye9GKQq6_hlXZJyaybXpCc/placeholder-m+%281%29.png?format=300w" style="border-radius: 50%;height:100px;width:100px;"> 
+                                @else
+                                <img src="{{ url('thumbs/' . $etudiant->photo) }}" style="border-radius: 50%;height:100px;width:100px;"> 
+                                @endif
+                     </td>
                             <td>{{ $etudiant->name }}</td>
                             <td>{{ $etudiant->prenom }}</td>
                             <td>{{ $etudiant->cin }}</td>
@@ -63,7 +71,7 @@
                             <td>{{ $etudiant->adresse }}</td>
                             <td>{{ optional($etudiant->classe)->created_at }}</td>
                             <td>{{ $etudiant->email }}</td>
-                            <td>{{ $etudiant->password }}</td>
+                  
 
                             <td>
 

@@ -7,6 +7,8 @@ use App\Models\Classe;
 use App\Models\etudiant;
 use Illuminate\Http\Request;
 use Exception;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image as InterventionImage;
 
 class EtudiantsController extends Controller
 {
@@ -46,14 +48,14 @@ class EtudiantsController extends Controller
     {
         try {
             
-            $data = $this->getData($request);
+            $data = $this->getData($request,0);
             
             etudiant::create($data);
 
             return redirect()->route('etudiants.etudiant.index')
                 ->with('success_message', 'Etudiant was successfully added.');
         } catch (Exception $exception) {
-
+            dd($exception);
             return back()->withInput()
                 ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request.']);
         }
@@ -99,16 +101,18 @@ class EtudiantsController extends Controller
     public function update($id, Request $request)
     {
         try {
-            
-            $data = $this->getData($request);
-            
             $etudiant = etudiant::findOrFail($id);
+            
+            
+            $data = $this->getData($request,$id);
+            
+            
             $etudiant->update($data);
 
             return redirect()->route('etudiants.etudiant.index')
                 ->with('success_message', 'Etudiant was successfully updated.');
         } catch (Exception $exception) {
-
+            dd($exception);
             return back()->withInput()
                 ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request.']);
         }        
@@ -143,16 +147,16 @@ class EtudiantsController extends Controller
      * @param Illuminate\Http\Request\Request $request 
      * @return array
      */
-    protected function getData(Request $request)
+    protected function getData(Request $request,$id)
     {
         $rules = [
                 'name' => 'string|min:1|max:255|nullable',
             'prenom' => 'string|min:1|nullable',
-            'cin' => 'string|min:1|nullable',
-            'telephone' => 'string|min:1|nullable',
+            'cin' => 'string|min:8|max:8|nullable',
+            'telephone' => 'string|min:8|max:8|nullable',
             'adresse' => 'string|min:1|nullable',
             'classe_id' => 'nullable',
-            'email' => 'nullable',
+            'email' => ['required', 'string', 'email', 'max:255',  \Illuminate\Validation\Rule::unique('etudiants')->ignore($id)],
             'password' => 'nullable',
             'photo' => ['file','nullable'], 
         ];
@@ -164,8 +168,15 @@ class EtudiantsController extends Controller
             $data['photo'] = null;
         }
         if ($request->hasFile('photo')) {
-            $data['photo'] = $this->moveFile($request->file('photo'));
+           // $data['photo'] = $this->moveFile($request->file('photo'));
+            $path = Storage::disk('images')->put('etudiant/', $request->file('photo'));
+    // Save thumb
+    $img = InterventionImage::make($request->file('photo'))->widen(100);
+    Storage::disk('thumbs')->put($path, $img->encode());
+    $data['photo'] = $path;
         }
+
+        $data['password'] = bcrypt($data['password']);
 
 
 

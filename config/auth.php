@@ -46,6 +46,10 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
+        'etudiant' => [
+          'driver' => 'session',
+          'provider' => 'etudiants',
+      ],
     ],
 
     /*
@@ -69,6 +73,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+         'etudiants' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\etudiant::class,
         ],
 
         // 'users' => [
@@ -98,6 +106,11 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+        'etudiants' => [
+            'provider' => 'etudiants',
+            'table' => 'password_resets',
+            'expire' => 15,
         ],
     ],
 

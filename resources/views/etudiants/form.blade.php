@@ -66,7 +66,7 @@
 <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
     <label for="password" class="col-md-2 control-label">Password</label>
     <div class="col-md-10">
-        <input class="form-control" name="password" type="password" id="password" value="{{ old('password', optional($etudiant)->password) }}" placeholder="Enter password here...">
+        <input class="form-control" name="password" type="password" id="password" value="" placeholder="Enter password here...">
         {!! $errors->first('password', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
