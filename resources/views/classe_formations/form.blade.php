@@ -5,8 +5,8 @@
         <select class="form-control" id="club_id" name="club_id">
         	    <option value="" style="display: none;" {{ old('club_id', optional($classeFormation)->club_id ?: '') == '' ? 'selected' : '' }} disabled selected>Select club</option>
         	@foreach ($clubs as $key => $club)
-			    <option value="{{ $key }}" {{ old('club_id', optional($classeFormation)->club_id) == $key ? 'selected' : '' }}>
-			    	{{ $club }}
+			    <option value="{{ $club->id }}" {{ old('club_id', optional($classeFormation)->club_id) == $key ? 'selected' : '' }}>
+			    	{{ $club->name }}
 			    </option>
 			@endforeach
         </select>
