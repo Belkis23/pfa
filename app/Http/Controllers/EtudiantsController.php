@@ -32,7 +32,8 @@ class EtudiantsController extends Controller
      */
     public function create()
     {
-        $classes = Classe::pluck('created_at','id')->all();
+       
+        $classes = classe::with('section')->get();
         
         return view('etudiants.create', compact('classes'));
     }
@@ -85,7 +86,7 @@ class EtudiantsController extends Controller
     public function edit($id)
     {
         $etudiant = etudiant::findOrFail($id);
-        $classes = Classe::pluck('created_at','id')->all();
+        $classes = classe::with('section')->get();
 
         return view('etudiants.edit', compact('etudiant','classes'));
     }

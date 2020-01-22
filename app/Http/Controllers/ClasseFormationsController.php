@@ -8,7 +8,7 @@ use App\Models\Etudiant;
 use App\Models\classe_formation;
 use Illuminate\Http\Request;
 use Exception;
-
+use Auth;
 class ClasseFormationsController extends Controller
 {
 
@@ -19,8 +19,12 @@ class ClasseFormationsController extends Controller
      */
     public function index()
     {
+        if(Auth::guard('etudiant')->check()){
+             $clubs = club::where('etudiant_id',Auth::guard('etudiant')->user()->id)->with('etudiant')->first();
+             $classeFormations = classe_formation::where('club_id',$clubs->id)->with('club','etudiant')->paginate(25);
+         }else{
         $classeFormations = classe_formation::with('club','etudiant')->paginate(25);
-
+   }
         return view('classe_formations.index', compact('classeFormations'));
     }
 
@@ -31,7 +35,12 @@ class ClasseFormationsController extends Controller
      */
     public function create()
     {
-        $clubs = Club::pluck('name','id')->all();
+        if(Auth::guard('etudiant')->check()){
+            $clubs = club::where('etudiant_id',Auth::guard('etudiant')->user()->id)->with('etudiant')->get();
+        
+        }else{
+            $clubs = Club::pluck('name','id')->all();
+        }
 $etudiants = Etudiant::pluck('name','id')->all();
         
         return view('classe_formations.create', compact('clubs','etudiants'));

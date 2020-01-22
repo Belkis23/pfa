@@ -8,7 +8,7 @@ use App\Models\Etudiant;
 use App\Models\membre_club;
 use Illuminate\Http\Request;
 use Exception;
-
+use Auth;
 class MembreClubsController extends Controller
 {
 
@@ -19,7 +19,15 @@ class MembreClubsController extends Controller
      */
     public function index()
     {
-        $membreClubs = membre_club::with('etudiant','club')->paginate(25);
+         if(Auth::guard('etudiant')->check()){
+            $clubs = club::where('etudiant_id',Auth::guard('etudiant')->user()->id)->with('etudiant')->first();
+            $membreClubs = membre_club::where('club_id',$clubs->id)->with('etudiant','club')->paginate(25);
+
+        
+        }else{
+            $membreClubs = membre_club::with('etudiant','club')->paginate(25);
+        }
+        
 
         return view('membre_clubs.index', compact('membreClubs'));
     }
@@ -32,7 +40,13 @@ class MembreClubsController extends Controller
     public function create()
     {
         $etudiants = Etudiant::pluck('name','id')->all();
-$clubs = Club::pluck('name','id')->all();
+         if(Auth::guard('etudiant')->check()){
+            $clubs = club::where('etudiant_id',Auth::guard('etudiant')->user()->id)->with('etudiant')->get();
+        
+        }else{
+            $clubs = Club::pluck('name','id')->all();
+        }
+
         
         return view('membre_clubs.create', compact('etudiants','clubs'));
     }

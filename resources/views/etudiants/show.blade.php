@@ -52,7 +52,7 @@
             <dt>Adresse</dt>
             <dd>{{ $etudiant->adresse }}</dd>
             <dt>Classe</dt>
-            <dd>{{ optional($etudiant->classe)->created_at }}</dd>
+            <dd>{{ optional($etudiant->classe)->section->name }}{{ optional($etudiant->classe)->neveau }}</dd>
             <dt>Email</dt>
             <dd>{{ $etudiant->email }}</dd>
            

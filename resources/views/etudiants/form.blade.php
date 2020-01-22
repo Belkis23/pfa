@@ -45,8 +45,8 @@
         <select class="form-control" id="classe_id" name="classe_id">
         	    <option value="" style="display: none;" {{ old('classe_id', optional($etudiant)->classe_id ?: '') == '' ? 'selected' : '' }} disabled selected>Select classe</option>
         	@foreach ($classes as $key => $classe)
-			    <option value="{{ $key }}" {{ old('classe_id', optional($etudiant)->classe_id) == $key ? 'selected' : '' }}>
-			    	{{ $classe }}
+			    <option value="{{ $classe->id }}" {{ old('classe_id', optional($etudiant)->classe_id) == $classe->id ? 'selected' : '' }}>
+			    	{{ $classe->section->name }}{{ $classe->neveau }}
 			    </option>
 			@endforeach
         </select>
