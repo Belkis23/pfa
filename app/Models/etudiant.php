@@ -3,13 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Session;
-class etudiant  extends Authenticatable
+use App\User;
+use Illuminate\Auth\Authenticatable;
+
+class etudiant  extends User
 {
     
-    use HasRoles;
+    use HasRoles ,Authenticatable;
 
 
 

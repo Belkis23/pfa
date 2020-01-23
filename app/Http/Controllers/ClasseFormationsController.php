@@ -41,7 +41,7 @@ class ClasseFormationsController extends Controller
         }else{
             $clubs = Club::pluck('name','id')->all();
         }
-$etudiants = Etudiant::pluck('name','id')->all();
+$etudiants = Etudiant::all();
         
         return view('classe_formations.create', compact('clubs','etudiants'));
     }
