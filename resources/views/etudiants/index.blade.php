@@ -69,7 +69,7 @@
                             <td>{{ $etudiant->cin }}</td>
                             <td>{{ $etudiant->telephone }}</td>
                             <td>{{ $etudiant->adresse }}</td>
-                            <td>{{ optional($etudiant->classe)->created_at }}</td>
+                            <td>{{ optional($etudiant->classe)->section->name }}{{ optional($etudiant->classe)->neveau }}</td>
                             <td>{{ $etudiant->email }}</td>
 
 

@@ -39,7 +39,7 @@ class ClasseFormationsController extends Controller
             $clubs = club::where('etudiant_id',Auth::guard('etudiant')->user()->id)->with('etudiant')->get();
         
         }else{
-            $clubs = Club::pluck('name','id')->all();
+            $clubs = Club::all();
         }
 $etudiants = Etudiant::pluck('name','id')->all();
         
