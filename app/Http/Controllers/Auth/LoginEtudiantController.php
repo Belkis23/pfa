@@ -8,12 +8,13 @@ use Auth;
 use App\Models\etudiant;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Spatie\Permission\Models\Permission;
+use DB;
 class LoginEtudiantController extends Controller
 {
 	 use AuthenticatesUsers;
      public function __construct()
     {
-      $this->middleware('guest:etudiant', ['except' => ['logout']]);
+      $this->middleware('guest:etudiant');
     }
 
     public function showLoginForm()
@@ -34,9 +35,15 @@ class LoginEtudiantController extends Controller
 
       // Attempt to log the user in
       if (Auth::guard('etudiant')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
-      	$etudiant = etudiant::where('email',$request->email)->get();
+      	$etudiant = etudiant::where('email',$request->email)->first();
         // if successful, then redirect to their intended location
-        if($etudiant->hasPermissionTo('president')){
+        
+     
+        $president = Permission::where('name','president')->first();
+        // dd($president);
+        //  $setting =  DB::table('model_has_permissions')->where('permission_id',$president->id)->where('model_id',$etudiant->id)->where('model_type',"App\Models\etudiant")->first();
+         
+        if($etudiant->hasPermissionTo($president)){
         	 return redirect('home');
         	}else{
         		return back();
