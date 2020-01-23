@@ -159,3 +159,8 @@ Route::group([
   Route::get('/loginforme', 'Auth\LoginEtudiantController@showLoginForm')->name('etudiant.form.login');
 
    Route::post('/loginetudiant', 'Auth\LoginEtudiantController@login')->name('etudiant.login.submit');
+
+
+   
+ Route::get('/logoutetudiant', 'Auth\LoginEtudiantController@logout')->name('etudiant.logout');
+
