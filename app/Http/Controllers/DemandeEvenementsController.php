@@ -1,5 +1,5 @@
 <?php
-
+ 
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -7,7 +7,7 @@ use App\Models\Club;
 use App\Models\Demande_Evenement;
 use Illuminate\Http\Request;
 use Exception;
-
+use Auth;
 class DemandeEvenementsController extends Controller
 {
 
@@ -17,9 +17,12 @@ class DemandeEvenementsController extends Controller
      * @return Illuminate\View\View
      */
     public function index()
-    {
+    {if(Auth::guard('etudiant')->check()){
+             $clubs = club::where('etudiant_id',Auth::guard('etudiant')->user()->id)->with('etudiant')->first();
+             $demandeEvenements = Demande_Evenement::where('club_id',$clubs->id)->paginate(25);
+         }else{
         $demandeEvenements = Demande_Evenement::with('club')->paginate(25);
-
+    }
         return view('demande__evenements.index', compact('demandeEvenements'));
     }
 
@@ -30,8 +33,12 @@ class DemandeEvenementsController extends Controller
      */
     public function create()
     {
-        $clubs = Club::pluck('name','id')->all();
+        if(Auth::guard('etudiant')->check()){
+            $clubs = club::where('etudiant_id',Auth::guard('etudiant')->user()->id)->with('etudiant')->get();
         
+        }else{
+            $clubs = Club::all();
+        }
         return view('demande__evenements.create', compact('clubs'));
     }
 

@@ -1,5 +1,5 @@
 <?php
-
+ 
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -8,7 +8,7 @@ use App\Models\Demande_Salle;
 use App\Models\Salle;
 use Illuminate\Http\Request;
 use Exception;
-
+use Auth;
 class DemandeSallesController extends Controller
 {
 
@@ -19,7 +19,12 @@ class DemandeSallesController extends Controller
      */
     public function index()
     {
+       if(Auth::guard('etudiant')->check()){
+             $clubs = club::where('etudiant_id',Auth::guard('etudiant')->user()->id)->with('etudiant')->first();
+             $demandeSalles = Demande_Salle::with('club','salle')->where('club_id',$clubs->id)->paginate(25);
+         }else{
         $demandeSalles = Demande_Salle::with('club','salle')->paginate(25);
+    }
 
         return view('demande__salles.index', compact('demandeSalles'));
     }
@@ -31,7 +36,14 @@ class DemandeSallesController extends Controller
      */
     public function create()
     {
-        $clubs = Club::pluck('name','id')->all();
+
+        if(Auth::guard('etudiant')->check()){
+            $clubs = club::where('etudiant_id',Auth::guard('etudiant')->user()->id)->with('etudiant')->get();
+        
+        }else{
+            $clubs = Club::all();
+        }
+       
 $salles = Salle::pluck('name','id')->all();
         
         return view('demande__salles.create', compact('clubs','salles'));

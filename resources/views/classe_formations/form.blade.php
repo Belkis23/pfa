@@ -21,11 +21,8 @@
         <select class="form-control" id="etudiant_id" name="etudiant_id">
         	    <option value="" style="display: none;" {{ old('etudiant_id', optional($classeFormation)->etudiant_id ?: '') == '' ? 'selected' : '' }} disabled selected>Select etudiant</option>
         	@foreach ($etudiants as $key => $etudiant)
-<<<<<<< HEAD
 			    <option value="{{ $etudiant->id }}" {{ old('etudiant_id', optional($classeFormation)->etudiant_id) == $etudiant->id ? 'selected' : '' }}>
-=======
-			    <option value="{{ $etudiant->id }}" {{ old('etudiant_id', optional($classeFormation)->etudiant_id) == $key ? 'selected' : '' }}>
->>>>>>> c822f8712a2f8b33841876e4959799e0abfbd883
+
 			    	{{ $etudiant->name }}
 			    </option>
 			@endforeach
