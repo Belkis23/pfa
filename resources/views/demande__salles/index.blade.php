@@ -19,20 +19,20 @@
         <div class="panel-heading clearfix">
 
             <div class="pull-left">
-                <h4 class="mt-5 mb-5">Responsable Club</h4>
+                <h4 class="mt-5 mb-5">Demande  Salles</h4>
             </div>
 
             <div class="btn-group btn-group-sm pull-right" role="group">
-                <a href="{{ route('classe_formations.classe_formation.create') }}" class="btn btn-success" title="Create New Classe Formation">
+                <a href="{{ route('demande__salles.demande__salle.create') }}" class="btn btn-success" title="Create New Demande  Salle">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 </a>
             </div>
 
         </div>
         
-        @if(count($classeFormations) == 0)
+        @if(count($demandeSalles) == 0)
             <div class="panel-body text-center">
-                <h4>No Classe Formations Available.</h4>
+                <h4>No Demande  Salles Available.</h4>
             </div>
         @else
         <div class="panel-body panel-body-with-table">
@@ -42,34 +42,38 @@
                     <thead>
                         <tr>
                             <th>Club</th>
-                            <th>Etudiant</th>
-                            <th>Post</th>
+                            <th>Salle</th>
+                            <th>Date</th>
+                            <th>Start</th>
+                            <th>End</th>
 
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($classeFormations as $classeFormation)
+                    @foreach($demandeSalles as $demandeSalle)
                         <tr>
-                            <td>{{ optional($classeFormation->club)->name }}</td>
-                            <td>{{ optional($classeFormation->etudiant)->name }}</td>
-                            <td>{{ $classeFormation->post }}</td>
+                            <td>{{ optional($demandeSalle->club)->name }}</td>
+                            <td>{{ optional($demandeSalle->salle)->name }}</td>
+                            <td>{{ $demandeSalle->date }}</td>
+                            <td>{{ $demandeSalle->Start }}</td>
+                            <td>{{ $demandeSalle->End }}</td>
 
                             <td>
 
-                                <form method="POST" action="{!! route('classe_formations.classe_formation.destroy', $classeFormation->id) !!}" accept-charset="UTF-8">
+                                <form method="POST" action="{!! route('demande__salles.demande__salle.destroy', $demandeSalle->id) !!}" accept-charset="UTF-8">
                                 <input name="_method" value="DELETE" type="hidden">
                                 {{ csrf_field() }}
 
                                     <div class="btn-group btn-group-xs pull-right" role="group">
-                                        <a href="{{ route('classe_formations.classe_formation.show', $classeFormation->id ) }}" class="btn btn-info" title="Show Classe Formation">
+                                        <a href="{{ route('demande__salles.demande__salle.show', $demandeSalle->id ) }}" class="btn btn-info" title="Show Demande  Salle">
                                             <span class="glyphicon glyphicon-open" aria-hidden="true"></span>
                                         </a>
-                                        <a href="{{ route('classe_formations.classe_formation.edit', $classeFormation->id ) }}" class="btn btn-primary" title="Edit Classe Formation">
+                                        <a href="{{ route('demande__salles.demande__salle.edit', $demandeSalle->id ) }}" class="btn btn-primary" title="Edit Demande  Salle">
                                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                                         </a>
 
-                                        <button type="submit" class="btn btn-danger" title="Delete Classe Formation" onclick="return confirm(&quot;Click Ok to delete Classe Formation.&quot;)">
+                                        <button type="submit" class="btn btn-danger" title="Delete Demande  Salle" onclick="return confirm(&quot;Click Ok to delete Demande  Salle.&quot;)">
                                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                                         </button>
                                     </div>
@@ -86,7 +90,7 @@
         </div>
 
         <div class="panel-footer">
-            {!! $classeFormations->render() !!}
+            {!! $demandeSalles->render() !!}
         </div>
         
         @endif

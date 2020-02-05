@@ -164,3 +164,60 @@ Route::group([
    
  Route::get('/logoutetudiant', 'Auth\LoginEtudiantController@logout')->name('etudiant.logout');
 
+
+Route::group([
+    'prefix' => 'salles',
+], function () {
+    Route::get('/', 'SallesController@index')
+         ->name('salles.salle.index');
+    Route::get('/create','SallesController@create')
+         ->name('salles.salle.create');
+    Route::get('/show/{salle}','SallesController@show')
+         ->name('salles.salle.show')->where('id', '[0-9]+');
+    Route::get('/{salle}/edit','SallesController@edit')
+         ->name('salles.salle.edit')->where('id', '[0-9]+');
+    Route::post('/', 'SallesController@store')
+         ->name('salles.salle.store');
+    Route::put('salle/{salle}', 'SallesController@update')
+         ->name('salles.salle.update')->where('id', '[0-9]+');
+    Route::delete('/salle/{salle}','SallesController@destroy')
+         ->name('salles.salle.destroy')->where('id', '[0-9]+');
+});
+
+Route::group([
+    'prefix' => 'demande__salles',
+], function () {
+    Route::get('/', 'DemandeSallesController@index')
+         ->name('demande__salles.demande__salle.index');
+    Route::get('/create','DemandeSallesController@create')
+         ->name('demande__salles.demande__salle.create');
+    Route::get('/show/{demandeSalle}','DemandeSallesController@show')
+         ->name('demande__salles.demande__salle.show')->where('id', '[0-9]+');
+    Route::get('/{demandeSalle}/edit','DemandeSallesController@edit')
+         ->name('demande__salles.demande__salle.edit')->where('id', '[0-9]+');
+    Route::post('/', 'DemandeSallesController@store')
+         ->name('demande__salles.demande__salle.store');
+    Route::put('demande__salle/{demandeSalle}', 'DemandeSallesController@update')
+         ->name('demande__salles.demande__salle.update')->where('id', '[0-9]+');
+    Route::delete('/demande__salle/{demandeSalle}','DemandeSallesController@destroy')
+         ->name('demande__salles.demande__salle.destroy')->where('id', '[0-9]+');
+});
+
+Route::group([
+    'prefix' => 'demande__evenements',
+], function () {
+    Route::get('/', 'DemandeEvenementsController@index')
+         ->name('demande__evenements.demande__evenement.index');
+    Route::get('/create','DemandeEvenementsController@create')
+         ->name('demande__evenements.demande__evenement.create');
+    Route::get('/show/{demandeEvenement}','DemandeEvenementsController@show')
+         ->name('demande__evenements.demande__evenement.show')->where('id', '[0-9]+');
+    Route::get('/{demandeEvenement}/edit','DemandeEvenementsController@edit')
+         ->name('demande__evenements.demande__evenement.edit')->where('id', '[0-9]+');
+    Route::post('/', 'DemandeEvenementsController@store')
+         ->name('demande__evenements.demande__evenement.store');
+    Route::put('demande__evenement/{demandeEvenement}', 'DemandeEvenementsController@update')
+         ->name('demande__evenements.demande__evenement.update')->where('id', '[0-9]+');
+    Route::delete('/demande__evenement/{demandeEvenement}','DemandeEvenementsController@destroy')
+         ->name('demande__evenements.demande__evenement.destroy')->where('id', '[0-9]+');
+});

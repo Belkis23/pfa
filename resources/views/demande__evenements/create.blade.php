@@ -7,11 +7,11 @@
         <div class="panel-heading clearfix">
             
             <span class="pull-left">
-                <h4 class="mt-5 mb-5">Create New Responsable Club</h4>
+                <h4 class="mt-5 mb-5">Create New Demande  Evenement</h4>
             </span>
 
             <div class="btn-group btn-group-sm pull-right" role="group">
-                <a href="{{ route('classe_formations.classe_formation.index') }}" class="btn btn-primary" title="Show All Classe Formation">
+                <a href="{{ route('demande__evenements.demande__evenement.index') }}" class="btn btn-primary" title="Show All Demande  Evenement">
                     <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                 </a>
             </div>
@@ -28,10 +28,10 @@
                 </ul>
             @endif
 
-            <form method="POST" action="{{ route('classe_formations.classe_formation.store') }}" accept-charset="UTF-8" id="create_classe_formation_form" name="create_classe_formation_form" class="form-horizontal">
+            <form method="POST" action="{{ route('demande__evenements.demande__evenement.store') }}" accept-charset="UTF-8" id="create_demande__evenement_form" name="create_demande__evenement_form" class="form-horizontal">
             {{ csrf_field() }}
-            @include ('classe_formations.form', [
-                                        'classeFormation' => null,
+            @include ('demande__evenements.form', [
+                                        'demandeEvenement' => null,
                                       ])
 
                 <div class="form-group">

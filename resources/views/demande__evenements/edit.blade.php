@@ -7,15 +7,15 @@
         <div class="panel-heading clearfix">
 
             <div class="pull-left">
-                <h4 class="mt-5 mb-5">{{ !empty($title) ? $title : 'Responsable Club' }}</h4>
+                <h4 class="mt-5 mb-5">{{ !empty($demandeEvenement->Name) ? $demandeEvenement->Name : 'Demande  Evenement' }}</h4>
             </div>
             <div class="btn-group btn-group-sm pull-right" role="group">
 
-                <a href="{{ route('classe_formations.classe_formation.index') }}" class="btn btn-primary" title="Show All Classe Formation">
+                <a href="{{ route('demande__evenements.demande__evenement.index') }}" class="btn btn-primary" title="Show All Demande  Evenement">
                     <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                 </a>
 
-                <a href="{{ route('classe_formations.classe_formation.create') }}" class="btn btn-success" title="Create New Classe Formation">
+                <a href="{{ route('demande__evenements.demande__evenement.create') }}" class="btn btn-success" title="Create New Demande  Evenement">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 </a>
 
@@ -32,11 +32,11 @@
                 </ul>
             @endif
 
-            <form method="POST" action="{{ route('classe_formations.classe_formation.update', $classeFormation->id) }}" id="edit_classe_formation_form" name="edit_classe_formation_form" accept-charset="UTF-8" class="form-horizontal">
+            <form method="POST" action="{{ route('demande__evenements.demande__evenement.update', $demandeEvenement->id) }}" id="edit_demande__evenement_form" name="edit_demande__evenement_form" accept-charset="UTF-8" class="form-horizontal">
             {{ csrf_field() }}
             <input name="_method" type="hidden" value="PUT">
-            @include ('classe_formations.form', [
-                                        'classeFormation' => $classeFormation,
+            @include ('demande__evenements.form', [
+                                        'demandeEvenement' => $demandeEvenement,
                                       ])
 
                 <div class="form-group">

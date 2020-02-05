@@ -22,5 +22,17 @@
     {
         "model-name": "Post",
         "resource-file": "posts.json"
+    },
+    {
+        "model-name": "Salle",
+        "resource-file": "salles.json"
+    },
+    {
+        "model-name": "Demande_Salle",
+        "resource-file": "demande__salles.json"
+    },
+    {
+        "model-name": "Demande_Evenement",
+        "resource-file": "demande__evenements.json"
     }
 ]

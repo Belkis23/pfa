@@ -212,7 +212,23 @@ return [
             'url'  => 'posts',
             'icon' => 'fas fa-fw fa-lock',
         ],
+         [
+            'text' => 'Salle',
+            'url'  => 'salles',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
+     [
+            'text' => 'Demande Salle',
+            'url'  => 'demande__salles',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
+         [
+            'text' => 'Demande Evenement',
+            'url'  => 'demande__evenements',
+            'icon' => 'fas fa-fw fa-lock',
+        ],
     ],
+
 
 
     /*

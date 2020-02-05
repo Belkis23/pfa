@@ -7,15 +7,15 @@
         <div class="panel-heading clearfix">
 
             <div class="pull-left">
-                <h4 class="mt-5 mb-5">{{ !empty($title) ? $title : 'Responsable Club' }}</h4>
+                <h4 class="mt-5 mb-5">{{ !empty($title) ? $title : 'Demande  Salle' }}</h4>
             </div>
             <div class="btn-group btn-group-sm pull-right" role="group">
 
-                <a href="{{ route('classe_formations.classe_formation.index') }}" class="btn btn-primary" title="Show All Classe Formation">
+                <a href="{{ route('demande__salles.demande__salle.index') }}" class="btn btn-primary" title="Show All Demande  Salle">
                     <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>
                 </a>
 
-                <a href="{{ route('classe_formations.classe_formation.create') }}" class="btn btn-success" title="Create New Classe Formation">
+                <a href="{{ route('demande__salles.demande__salle.create') }}" class="btn btn-success" title="Create New Demande  Salle">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 </a>
 
@@ -32,11 +32,11 @@
                 </ul>
             @endif
 
-            <form method="POST" action="{{ route('classe_formations.classe_formation.update', $classeFormation->id) }}" id="edit_classe_formation_form" name="edit_classe_formation_form" accept-charset="UTF-8" class="form-horizontal">
+            <form method="POST" action="{{ route('demande__salles.demande__salle.update', $demandeSalle->id) }}" id="edit_demande__salle_form" name="edit_demande__salle_form" accept-charset="UTF-8" class="form-horizontal">
             {{ csrf_field() }}
             <input name="_method" type="hidden" value="PUT">
-            @include ('classe_formations.form', [
-                                        'classeFormation' => $classeFormation,
+            @include ('demande__salles.form', [
+                                        'demandeSalle' => $demandeSalle,
                                       ])
 
                 <div class="form-group">
