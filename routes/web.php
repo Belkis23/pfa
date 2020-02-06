@@ -161,8 +161,8 @@ Route::group([
    Route::post('/loginetudiant', 'Auth\LoginEtudiantController@login')->name('etudiant.login.submit');
 
 
-   
- Route::get('/logoutetudiant', 'Auth\LoginEtudiantController@logout')->name('etudiant.logout');
+
+ Route::get('/logout', 'Auth\LoginEtudiantController@logout')->name('etudiant.logout');
 
 
 Route::group([
@@ -221,3 +221,15 @@ Route::group([
     Route::delete('/demande__evenement/{demandeEvenement}','DemandeEvenementsController@destroy')
          ->name('demande__evenements.demande__evenement.destroy')->where('id', '[0-9]+');
 });
+
+
+
+
+   Route::get('/confirmedevent', 'DemandeEvenementsController@confirmed')->name('confirmedevent');
+
+   Route::get('/confirmedeventsalle', 'DemandeSallesController@confirmed')->name('confirmedeventsalle');
+   Route::get('/printsale', 'DemandeSallesController@printsale')->name('printsale');
+
+     Route::get('/printevent', 'DemandeEvenementsController@printevent')->name('printevent');
+
+

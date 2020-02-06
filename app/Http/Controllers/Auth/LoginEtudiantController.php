@@ -14,8 +14,9 @@ class LoginEtudiantController extends Controller
 	 use AuthenticatesUsers;
      public function __construct()
     {
-      $this->middleware('guest:etudiant');
+      $this->middleware('guest:etudiant')->except('logout');
     }
+
 
     public function showLoginForm()
     {
@@ -57,7 +58,8 @@ class LoginEtudiantController extends Controller
 
     public function logout()
     {
+   
         Auth::guard('etudiant')->logout();
-        return back();
+        return redirect('/');
     }
 }
