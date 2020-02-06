@@ -17,6 +17,7 @@ class LoginEtudiantController extends Controller
 
 
 
+
     public function login(Request $request){
     	 $params = [
                 'grant_type' => 'password',
@@ -32,7 +33,7 @@ class LoginEtudiantController extends Controller
      $request->request->add($params);
 
             $proxy = Request::create('http://192.168.64.2/oauth/token' , 'POST');
-            
+
 /// return app()->handle($proxy);
             return Route::dispatch($proxy);
 

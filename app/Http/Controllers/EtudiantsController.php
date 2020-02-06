@@ -21,7 +21,6 @@ class EtudiantsController extends Controller
     public function index()
     {
         $etudiants = etudiant::with('classe')->paginate(25);
-
         return view('etudiants.index', compact('etudiants'));
     }
 

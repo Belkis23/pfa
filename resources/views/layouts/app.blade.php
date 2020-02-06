@@ -19,9 +19,18 @@
 
 <!-- Optional theme -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<style type="text/css">
+	.badge-danger{
+		background-color: #dc3545!important;
+	}
 
+.badge-success {
+    color: #fff;
+    background-color: #28a745!important;
+}
+</style>
 @stop
-
+@section('plugins.Datatables', true)
 @section('js')
    
 <!-- Latest compiled and minified JavaScript -->

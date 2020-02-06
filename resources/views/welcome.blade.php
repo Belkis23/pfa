@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Theme Starz">
 
-    <link href="{{ asset('css')}}" rel="stylesheet" type="text/css">
-    <link href="{{ asset('font-awesome.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css.css')}}" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ asset('bootstrap.css')}}" type="text/css">
     <link rel="stylesheet" href="{{ asset('selectize.css')}}" type="text/css">
     <link rel="stylesheet" href="{{ asset('owl.carousel.css')}}" type="text/css">
@@ -17,8 +16,11 @@
 
     <link rel="stylesheet" href="{{ asset('style.css')}}" type="text/css">
 
-    <title>Universo - Educational, Course and University Template</title>
+    <title>Univers</title>
+<style type="text/css">
 
+
+</style>
 </head>
 
 <body class="page-homepage-carousel">
@@ -27,21 +29,7 @@
 <!-- Header -->
 <div class="navigation-wrapper">
     <div class="secondary-navigation-wrapper">
-        <div class="container">
-            <div class="navigation-contact pull-left">Call Us:  <span class="opacity-70">000-123-456-789</span></div>
-            <div class="search">
-                <div class="input-group">
-                    <input type="search" class="form-control" name="search" placeholder="Search">
-                    <span class="input-group-btn"><button type="submit" id="search-submit" class="btn"><i class="fa fa-search"></i></button></span>
-                </div><!-- /.input-group -->
-            </div>
-            <ul class="secondary-navigation list-unstyled">
-                <li><a href="http://www.themestarz.net/html/universo/index2.html#">Prospective Students</a></li>
-                <li><a href="http://www.themestarz.net/html/universo/index2.html#">Current Students</a></li>
-                <li><a href="http://www.themestarz.net/html/universo/index2.html#">Faculty &amp; Staff</a></li>
-                <li><a href="http://www.themestarz.net/html/universo/index2.html#">Alumni</a></li>
-            </ul>
-        </div>
+        
     </div><!-- /.secondary-navigation -->
     <div class="primary-navigation-wrapper">
         <header class="navbar" id="top" role="banner">
@@ -54,67 +42,28 @@
                         <span class="icon-bar"></span>
                     </button>
                     <div class="navbar-brand nav" id="brand">
-                        <a href="http://www.themestarz.net/html/universo/index.html"><img src="{{ asset('logo.png')}}" alt="brand"></a>
+                        <a href="{{url('/')}}"><img src="{{ asset('logoenit.png')}}" alt="brand"></a>
                     </div>
                 </div>
                 <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
                     <ul class="nav navbar-nav">
                         <li class="active">
-                            <a href="http://www.themestarz.net/html/universo/index2.html#" class="has-child no-link">Home</a>
-                            <ul class="list-unstyled child-navigation">
-                                <li><a href="http://www.themestarz.net/html/universo/index.html">Homepage Education</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/homepage-courses.html">Homepage Courses</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/homepage-events.html">Homepage Events</a></li>
-                            </ul>
+                            <a href="{{url('/')}}">Home</a>
+
+                           
                         </li>
-                        <li>
-                            <a href="http://www.themestarz.net/html/universo/index2.html#" class=" has-child no-link">Courses</a>
-                            <ul class="list-unstyled child-navigation">
-                                <li><a href="http://www.themestarz.net/html/universo/course-landing-page.html">Course Landing Page</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/course-listing.html">Course Listing</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/course-listing-images.html">Course Listing with Images</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/course-detail-v1.html">Course Detail v1</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/course-detail-v2.html">Course Detail v2</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/course-detail-v3.html">Course Detail v3</a></li>
-                            </ul>
+
+
+                        @if(Auth::guard('etudiant')->check())
+                         <li class="active">
+                            <a href="{{route('etudiant.logout')}}">Logout</a>
+
+                           
                         </li>
-                        <li>
-                            <a href="http://www.themestarz.net/html/universo/index2.html#" class="has-child no-link">Events</a>
-                            <ul class="list-unstyled child-navigation">
-                                <li><a href="http://www.themestarz.net/html/universo/event-listing-images.html">Events Listing with images</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/event-listing.html">Events Listing</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/event-grid.html">Events Grid</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/event-detail.html">Event Detail</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/event-calendar.html">Events Calendar</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="http://www.themestarz.net/html/universo/about-us.html">About Us</a>
-                        </li>
-                        <li>
-                            <a href="http://www.themestarz.net/html/universo/index2.html#" class="has-child no-link">Blog</a>
-                            <ul class="list-unstyled child-navigation">
-                                <li><a href="http://www.themestarz.net/html/universo/blog-listing.html">Blog listing</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/blog-detail.html">Blog Detail</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="http://www.themestarz.net/html/universo/index2.html#" class="has-child no-link">Pages</a>
-                            <ul class="list-unstyled child-navigation">
-                                <li><a href="http://www.themestarz.net/html/universo/full-width.html">Fullwidth</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/left-sidebar.html">Left Sidebar</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/right-sidebar.html">Right Sidebar</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/microsite.html">Microsite</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/my-account.html">My Account</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/members.html">Members</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/member-detail.html">Member Detail</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/register-sign-in.html">Register &amp; Sign In</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/shortcodes.html">Shortcodes</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="http://www.themestarz.net/html/universo/contact-us.html">Contact Us</a>
-                        </li>
+
+                        @endif
+                       
+                       
                     </ul>
                 </nav><!-- /.navbar collapse-->
             </div><!-- /.container -->
@@ -138,41 +87,37 @@
                         <div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 3330px; left: 0px; display: block; transition: all 800ms ease 0s; transform: translate3d(-1110px, 0px, 0px);"><div class="owl-item" style="width: 555px;"><div class="image-carousel-slide"><img src="{{ asset('slide-1.jpg')}}" alt=""></div></div><div class="owl-item" style="width: 555px;"><div class="image-carousel-slide"><img src="{{ asset('slide-2.jpg')}}" alt=""></div></div><div class="owl-item" style="width: 555px;"><div class="image-carousel-slide"><img src="{{ asset('slide-3.jpg')}}" alt=""></div></div></div></div>
                         
                         
-                    <div class="owl-controls clickable"><div class="owl-pagination"><div class="owl-page"><span class=""></span></div><div class="owl-page"><span class=""></span></div><div class="owl-page active"><span class=""></span></div></div><div class="owl-buttons"><div class="owl-prev"></div><div class="owl-next"></div></div></div></div><!-- /.slider-image -->
+                   
+                </div><!-- /.slider-image -->
                 </div><!-- /.col-md-6 -->
                 <div class="col-md-6 col-sm-5" style="min-height: 320px;">
                     <div class="slider-content">
                         <div class="row">
                             <div class="col-md-12" style="min-height: 262px;">
+                                 @if(!Auth::guard('etudiant')->check()) 
                                 <h1>Join the comunity of modern thinking students</h1>
-                                <form id="slider-form" role="form" action="http://www.themestarz.net/html/universo/index2.html" method="post">
+                            
+                             <form id="slider-form"method="POST" action="{{ route('etudiant.login.submit') }}">
+                              @csrf
                                     <div class="row">
+                                       
                                         <div class="col-md-6" style="min-height: 50px;">
                                             <div class="input-group">
-                                                <input class="form-control has-dark-background" name="slider-name" id="slider-name" placeholder="Full Name" type="text" required="">
+                                                <input class="form-control has-dark-background" name="email" id="email" placeholder="Email" type="email" required="">
                                             </div>
                                         </div><!-- /.col-md-6 -->
-                                        <div class="col-md-6" style="min-height: 50px;">
+
+                                         <div class="col-md-6" style="min-height: 50px;">
                                             <div class="input-group">
-                                                <input class="form-control has-dark-background" name="slider-email" id="slider-email" placeholder="Email" type="email" required="">
+                                                <input class="form-control has-dark-background" name="password" id="password" placeholder="Password" type="password" required="">
                                             </div>
                                         </div><!-- /.col-md-6 -->
                                     </div><!-- /.row -->
-                                    <div class="row">
-                                        <div class="col-md-6" style="min-height: 50px;">
-                                            <div class="input-group">
-                                                <select name="slider-study-level" id="slider-study-level" class="has-dark-background selectized" tabindex="-1" style="display: none;"><option value="- Not selected -" selected="selected"></option></select><div class="selectize-control has-dark-background single"><div class="selectize-input items full has-options has-items"><div data-value="- Not selected -" class="item">Study Level</div><input type="text" autocomplete="off" tabindex="" style="width: 4px;"></div><div class="selectize-dropdown has-dark-background single" style="display: none;"><div class="selectize-dropdown-content"></div></div></div>
-                                            </div><!-- /.form-group -->
-                                        </div><!-- /.col-md-6 -->
-                                        <div class="col-md-6" style="min-height: 50px;">
-                                            <div class="input-group">
-                                                <select name="slider-course" id="slider-course" class="has-dark-background selectized" tabindex="-1" style="display: none;"><option value="- Not selected -" selected="selected"></option></select><div class="selectize-control has-dark-background single"><div class="selectize-input items full has-options has-items"><div data-value="- Not selected -" class="item">Courses</div><input type="text" autocomplete="off" tabindex="" style="width: 4px;"></div><div class="selectize-dropdown has-dark-background single" style="display: none;"><div class="selectize-dropdown-content"></div></div></div>
-                                            </div><!-- /.form-group -->
-                                        </div><!-- /.col-md-6 -->
-                                    </div><!-- /.row -->
-                                    <button type="submit" id="slider-submit" class="btn btn-framed pull-right">Submit</button>
+                                   
+                                    <button type="submit"  class="btn btn-framed pull-right">Login</button>
                                     <div id="form-status"></div>
                                 </form>
+                              @endif
                             </div><!-- /.col-md-12 -->
                         </div><!-- /.row -->
                     </div><!-- /.slider-content -->
@@ -693,19 +638,18 @@
 </div>
 <!-- end Wrapper -->
 
-<script type="text/javascript" src="{{ asset('jquery-2.1.0.min.js.téléchargement')}}"></script>
-<script type="text/javascript" src="{{ asset('jquery-migrate-1.2.1.min.js.téléchargement')}}"></script>
-<script type="text/javascript" src="{{ asset('bootstrap.min.js.téléchargement')}}"></script>
-<script type="text/javascript" src="{{ asset('selectize.min.js.téléchargement')}}"></script>
-<script type="text/javascript" src="{{ asset('owl.carousel.min.js.téléchargement')}}"></script>
-<script type="text/javascript" src="{{ asset('jquery.validate.min.js.téléchargement')}}"></script>
-<script type="text/javascript" src="{{ asset('jquery.placeholder.js.téléchargement')}}"></script>
-<script type="text/javascript" src="{{ asset('jQuery.equalHeights.js.téléchargement')}}"></script>
-<script type="text/javascript" src="{{ asset('icheck.min.js.téléchargement')}}"></script>
-<script type="text/javascript" src="{{ asset('jquery.vanillabox-0.1.5.min.js.téléchargement')}}"></script>
-<script type="text/javascript" src="{{ asset('retina-1.1.0.min.js.téléchargement')}}"></script>
+<script type="text/javascript" src="{{ asset('jquery-2.1.0.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('jquery-migrate-1.2.1.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('selectize.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('owl.carousel.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('jquery.validate.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('jquery.placeholder.js')}}"></script>
+<script type="text/javascript" src="{{ asset('jQuery.equalHeights.js')}}"></script>
+<script type="text/javascript" src="{{ asset('icheck.min.js')}}"></script>
+<script type="text/javascript" src="{{ asset('jquery.vanillabox-0.1.5.min.js')}}"></script>
 
-<script type="text/javascript" src="{{ asset('custom.js.téléchargement')}}"></script>
+<script type="text/javascript" src="{{ asset('custom.js')}}"></script>
 
 
-<div class="vnbx-mask vnbx vnbx-close-button-enabled vnbx-group" style="display: none; width: 1349px; height: 2979px;"><div class="vnbx-frame" style="left: 683px; top: 313px;"><div class="vnbx-container" style="width: 200px; height: 150px;"><div class="vnbx-content vnbx-empty" style="margin-left: -100px; margin-top: -75px;"></div></div><div class="vnbx-label vnbx-title"></div><div class="vnbx-label vnbx-pager"></div><div class="vnbx-button vnbx-prev" ontouchstart="void(0)"></div><div class="vnbx-button vnbx-next" ontouchstart="void(0)"></div><div class="vnbx-button vnbx-close" ontouchstart="void(0)"></div></div></div></body></html>
+</body></html>

@@ -97,7 +97,12 @@ $salles = Salle::pluck('name','id')->all();
     public function edit($id)
     {
         $demandeSalle = Demande_Salle::findOrFail($id);
-        $clubs = Club::pluck('name','id')->all();
+     if(Auth::guard('etudiant')->check()){
+            $clubs = club::where('etudiant_id',Auth::guard('etudiant')->user()->id)->with('etudiant')->get();
+        
+        }else{
+            $clubs = Club::all();
+        }
 $salles = Salle::pluck('name','id')->all();
 
         return view('demande__salles.edit', compact('demandeSalle','clubs','salles'));
@@ -176,5 +181,19 @@ $salles = Salle::pluck('name','id')->all();
 
         return $data;
     }
+
+    public function confirmed(Request $request){
+        $demandeSalle = Demande_Salle::findOrFail($request->id);
+        $demandeSalle->confirmed = 1;
+        $demandeSalle->save();
+        return "treu";
+    }
+
+     public function printsale(Request $request){
+        $demandeSalles = Demande_Salle::where('confirmed','=',1)->whereBetween('date', [$request->start, $request->end])->with('club','salle')->get();
+       return view('demande__salles.print', compact('demandeSalles'));
+    }
+
+    
 
 }

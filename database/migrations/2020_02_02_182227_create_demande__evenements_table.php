@@ -23,6 +23,7 @@ class CreateDemandeEvenementsTable extends Migration
             $table->string('Start')->nullable();
             $table->string('End')->nullable();
             $table->string('description', 1000)->nullable();
+            $table->boolean('confirmed')->default('0');
 
         });
     }

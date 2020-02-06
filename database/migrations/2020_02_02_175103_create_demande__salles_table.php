@@ -21,6 +21,8 @@ class CreateDemandeSallesTable extends Migration
             $table->string('date')->nullable();
             $table->string('Start')->nullable();
             $table->string('End')->nullable();
+            $table->boolean('confirmed')->default('0');
+
 
         });
     }

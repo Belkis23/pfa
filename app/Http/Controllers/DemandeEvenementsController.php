@@ -90,7 +90,12 @@ class DemandeEvenementsController extends Controller
     public function edit($id)
     {
         $demandeEvenement = Demande_Evenement::findOrFail($id);
-        $clubs = Club::pluck('name','id')->all();
+       if(Auth::guard('etudiant')->check()){
+            $clubs = club::where('etudiant_id',Auth::guard('etudiant')->user()->id)->with('etudiant')->get();
+        
+        }else{
+            $clubs = Club::all();
+        }
 
         return view('demande__evenements.edit', compact('demandeEvenement','clubs'));
     }
@@ -169,6 +174,20 @@ class DemandeEvenementsController extends Controller
 
 
         return $data;
+    }
+
+
+    public function confirmed(Request $request){
+        $demandeEvenement = Demande_Evenement::findOrFail($request->id);
+        $demandeEvenement->confirmed = 1;
+        $demandeEvenement->save();
+        return "treu";
+    }
+
+
+     public function printevent(Request $request){
+        $demandeEvenements = Demande_Evenement::where('confirmed','=',1)->whereBetween('date', [$request->start, $request->end])->with('club')->get();
+       return view('demande__evenements.print', compact('demandeEvenements'));
     }
 
 }
