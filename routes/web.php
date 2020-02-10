@@ -11,9 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('/');
+Route::get('/', 'Frent\homeController@index')->name('/');
+Route::get('/calender', 'Frent\homeController@calender')->name('calender');
+Route::get('/profile', 'Frent\homeController@profile')->name('profile');
+Route::POST('/updateetudin', 'Frent\homeController@updateetudin')->name('updateetudin');
+
+Route::POST('/changepasse', 'Frent\homeController@changepasse')->name('changepasse');
+
+
+
+
+
 
 Auth::routes();
 
@@ -231,5 +239,8 @@ Route::group([
    Route::get('/printsale', 'DemandeSallesController@printsale')->name('printsale');
 
      Route::get('/printevent', 'DemandeEvenementsController@printevent')->name('printevent');
+
+
+
 
 

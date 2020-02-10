@@ -1,134 +1,7 @@
+@extends('layouts.frent')
 
+@section('content')
 
-<!DOCTYPE html>
-<!-- saved from url=(0051)http://www.themestarz.net/html/universo/index2.html -->
-<html lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Theme Starz">
-
-    <link href="{{ asset('css.css')}}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{{ asset('bootstrap.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('selectize.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('owl.carousel.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('vanillabox.css')}}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('vanillabox.css')}}" type="text/css">
-
-    <link rel="stylesheet" href="{{ asset('style.css')}}" type="text/css">
-
-    <title>Univers</title>
-<style type="text/css">
-
-
-</style>
-</head>
-
-<body class="page-homepage-carousel">
-<!-- Wrapper -->
-<div class="wrapper">
-<!-- Header -->
-<div class="navigation-wrapper">
-    <div class="secondary-navigation-wrapper">
-        
-    </div><!-- /.secondary-navigation -->
-    <div class="primary-navigation-wrapper">
-        <header class="navbar" id="top" role="banner">
-            <div class="container">
-                <div class="navbar-header">
-                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <div class="navbar-brand nav" id="brand">
-                        <a href="{{url('/')}}"><img src="{{ asset('logoenit.png')}}" alt="brand"></a>
-                    </div>
-                </div>
-                <nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
-                    <ul class="nav navbar-nav">
-                        <li class="active">
-                            <a href="{{url('/')}}">Home</a>
-
-                           
-                        </li>
-
-
-                        @if(Auth::guard('etudiant')->check())
-                         <li class="active">
-                            <a href="{{route('etudiant.logout')}}">Logout</a>
-
-                           
-                        </li>
-
-                        @endif
-                       
-                       
-                    </ul>
-                </nav><!-- /.navbar collapse-->
-            </div><!-- /.container -->
-        </header><!-- /.navbar -->
-    </div><!-- /.primary-navigation -->
-    <div class="background">
-        <img src="{{ asset('background-city.png')}}" alt="background">
-    </div>
-</div>
-<!-- end Header -->
-
-<!-- Page Content -->
-<div id="page-content">
-<!-- Slider -->
-<div id="homepage-carousel">
-    <div class="container">
-        <div class="homepage-carousel-wrapper">
-            <div class="row">
-                <div class="col-md-6 col-sm-7" style="min-height: 320px;">
-                    <div class="image-carousel owl-carousel owl-theme" style="display: block; opacity: 1;">
-                        <div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 3330px; left: 0px; display: block; transition: all 800ms ease 0s; transform: translate3d(-1110px, 0px, 0px);"><div class="owl-item" style="width: 555px;"><div class="image-carousel-slide"><img src="{{ asset('slide-1.jpg')}}" alt=""></div></div><div class="owl-item" style="width: 555px;"><div class="image-carousel-slide"><img src="{{ asset('slide-2.jpg')}}" alt=""></div></div><div class="owl-item" style="width: 555px;"><div class="image-carousel-slide"><img src="{{ asset('slide-3.jpg')}}" alt=""></div></div></div></div>
-                        
-                        
-                   
-                </div><!-- /.slider-image -->
-                </div><!-- /.col-md-6 -->
-                <div class="col-md-6 col-sm-5" style="min-height: 320px;">
-                    <div class="slider-content">
-                        <div class="row">
-                            <div class="col-md-12" style="min-height: 262px;">
-                                 @if(!Auth::guard('etudiant')->check()) 
-                                <h1>Join the comunity of modern thinking students</h1>
-                            
-                             <form id="slider-form"method="POST" action="{{ route('etudiant.login.submit') }}">
-                              @csrf
-                                    <div class="row">
-                                       
-                                        <div class="col-md-6" style="min-height: 50px;">
-                                            <div class="input-group">
-                                                <input class="form-control has-dark-background" name="email" id="email" placeholder="Email" type="email" required="">
-                                            </div>
-                                        </div><!-- /.col-md-6 -->
-
-                                         <div class="col-md-6" style="min-height: 50px;">
-                                            <div class="input-group">
-                                                <input class="form-control has-dark-background" name="password" id="password" placeholder="Password" type="password" required="">
-                                            </div>
-                                        </div><!-- /.col-md-6 -->
-                                    </div><!-- /.row -->
-                                   
-                                    <button type="submit"  class="btn btn-framed pull-right">Login</button>
-                                    <div id="form-status"></div>
-                                </form>
-                              @endif
-                            </div><!-- /.col-md-12 -->
-                        </div><!-- /.row -->
-                    </div><!-- /.slider-content -->
-                </div><!-- /.col-md-6 -->
-            </div><!-- /.row -->
-            <div class="background"></div>
-        </div><!-- /.slider-wrapper -->
-        <div class="slider-inner"></div>
-    </div><!-- /.container -->
-</div>
-<!-- end Slider -->
 
 <!-- News, Events, About -->
 <div class="block">
@@ -137,71 +10,99 @@
             <div class="col-md-4 col-sm-6" style="min-height: 391px;">
                 <section class="news-small" id="news-small">
                     <header>
-                        <h2>News</h2>
+                        <h2>Clubs</h2>
                     </header>
                     <div class="section-content">
+                         @foreach($clubs as $key => $club)
                         <article>
-                            <figure class="date"><i class="fa fa-file-o"></i>08-24-2014</figure>
-                            <header><a href="http://www.themestarz.net/html/universo/index2.html#">U-M School of Public Health, Detroit partners aim to improve air quality in the city</a></header>
+                            <figure class="date"><i class="fa fa-users"></i>{{$club->created_at}}</figure>
+                            <header><a href="#">{{$club->name}}</a></header>
                         </article><!-- /article -->
-                        <article>
-                            <figure class="date"><i class="fa fa-file-o"></i>08-24-2014</figure>
-                            <header><a href="http://www.themestarz.net/html/universo/index2.html#">At 50, Center for the Education of Women celebrates a wider mission</a></header>
-                        </article><!-- /article -->
-                        <article>
-                            <figure class="date"><i class="fa fa-file-o"></i>08-24-2014</figure>
-                            <header><a href="http://www.themestarz.net/html/universo/index2.html#">Three U-Michigan scientists receive Sloan fellowships</a></header>
-                        </article><!-- /article -->
+                        @endforeach
+                        
                     </div><!-- /.section-content -->
-                    <a href="http://www.themestarz.net/html/universo/index2.html" class="read-more stick-to-bottom">All News</a>
+                    <a href="{{url('/')}}" style="color: #252525;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+        bottom: 0;
+    position: absolute;
+    ">All Club</a>
                 </section><!-- /.news-small -->
             </div><!-- /.col-md-4 -->
+
+
+
+
             <div class="col-md-4 col-sm-6" style="min-height: 391px;">
                 <section class="events small" id="events-small">
                     <header>
                         <h2>Events</h2>
-                        <a href="http://www.themestarz.net/html/universo/index2.html" class="link-calendar">Calendar</a>
+                        <a href="{{url('/calender')}}" class="link-calendar">Calendar <span class="glyphicon glyphicon-calendar"></span></a>
                     </header>
                     <div class="section-content">
+                        @foreach($evenment as $key => $event)
+                        @if($key == 0)
                         <article class="event nearest">
                             <figure class="date">
-                                <div class="month">jan</div>
-                                <div class="day">18</div>
+                                <div class="month">{{$event->month}}</div>
+                                <div class="day">{{$event->day}}</div>
                             </figure>
                             <aside>
                                 <header>
-                                    <a href="http://www.themestarz.net/html/universo/event-detail.html">Conservatory Exhibit: The garden of india a country and culture revealed</a>
+                                    <a href="">{{$event->Name}}</a>
                                 </header>
-                                <div class="additional-info">Matthaei Botanical Gardens</div>
+                                <div class="additional-info">{{ optional($event->club)->name }}</div>
                             </aside>
                         </article><!-- /article -->
+                        @elseif($key == 1)
+
+
                         <article class="event nearest-second">
                             <figure class="date">
-                                <div class="month">feb</div>
-                                <div class="day">01</div>
+                                <div class="month">{{$event->month}}</div>
+                                <div class="day">{{$event->day}}</div>
                             </figure>
                             <aside>
                                 <header>
-                                    <a href="http://www.themestarz.net/html/universo/event-detail.html">February Half-Term Activities: Big Stars and Little Secrets </a>
+                                    <a href="">{{$event->Name}} </a>
                                 </header>
-                                <div class="additional-info clearfix">Pitt Rivers and Natural History Museums</div>
+                                <div class="additional-info clearfix">{{ optional($event->club)->name }}</div>
                             </aside>
                         </article><!-- /article -->
+                        @elseif($key == 2)
                         <article class="event">
                             <figure class="date">
-                                <div class="month">mar</div>
-                                <div class="day">23</div>
+                                <div class="month">{{$event->month}}</div>
+                                <div class="day">{{$event->day}}</div>
                             </figure>
                             <aside>
                                 <header>
-                                    <a href="http://www.themestarz.net/html/universo/event-detail.html">The Orchestra of the Age of Enlightenment perform with Music</a>
+                                    <a href="">{{$event->Name}}</a>
                                 </header>
-                                <div class="additional-info">Faculty of Music</div>
+                                <div class="additional-info">{{ optional($event->club)->name }}</div>
                             </aside>
                         </article><!-- /article -->
+                        @endif
+                        @endforeach
+                        <a href="{{url('/calender')}}" style="color: #252525;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+        bottom: 0;
+    position: absolute;
+    ">Calendar</a>
+
                     </div><!-- /.section-content -->
                 </section><!-- /.events-small -->
             </div><!-- /.col-md-4 -->
+
+
+
+
+
             <div class="col-md-4 col-sm-12" style="min-height: 391px;">
                 <section id="about">
                     <header>
@@ -212,7 +113,14 @@
                         <p><strong>Welcome o Universo.</strong> Premium HTML Template for schools, universieties and other educational institutes.
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec laoreet semper tincidunt.
                             Interdum et malesuada fames ac ante ipsum primis in faucibus. </p>
-                        <a href="http://www.themestarz.net/html/universo/index2.html" class="read-more stick-to-bottom">Read More</a>
+                        <a href="#" style="color: #252525;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+        bottom: 0;
+    position: absolute;
+    ">Read More</a>
                     </div><!-- /.section-content -->
                 </section><!-- /.about -->
             </div><!-- /.col-md-4 -->
@@ -223,433 +131,20 @@
 
 <!-- Testimonial -->
 <section id="testimonials">
-    <div class="block">
-        <div class="container">
-            <div class="author-carousel owl-carousel owl-theme" style="display: block; opacity: 1;">
-                <div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 4560px; left: 0px; display: block;"><div class="owl-item" style="width: 1140px;"><div class="author">
-                    <blockquote>
-                        <figure class="author-picture"><img src="{{ asset('student-testimonial.jpg')}}" alt=""></figure>
-                        <article class="paragraph-wrapper">
-                            <div class="inner">
-                                <header>Morbi nec nisi ante. Quisque lacus ligula, iaculis in elit et, interdum semper quam. Fusce in interdum tortor.
-                                    Ut sollicitudin lectus dolor eget imperdiet libero pulvinar sit amet.</header>
-                                <footer>Claire Doe</footer>
-                            </div>
-                        </article>
-                    </blockquote>
-                </div></div><div class="owl-item" style="width: 1140px;"><div class="author">
-                    <blockquote>
-                        <figure class="author-picture"><img src="{{ asset('student-testimonial.jpg')}}" alt=""></figure>
-                        <article class="paragraph-wrapper">
-                            <div class="inner">
-                                <header>Morbi nec nisi ante. Quisque lacus ligula, iaculis in elit et, interdum semper quam. Fusce in interdum tortor.
-                                    Ut sollicitudin lectus dolor eget imperdiet libero pulvinar sit amet.</header>
-                                <footer>Claire Doe</footer>
-                            </div>
-                        </article>
-                    </blockquote>
-                </div></div></div></div><!-- /.author -->
-                <!-- /.author -->
-            <div class="owl-controls clickable"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div><div class="owl-page"><span class=""></span></div></div></div></div><!-- /.author-carousel -->
-        </div><!-- /.container -->
-    </div><!-- /.block -->
+   
 </section>
 <!-- end Testimonial -->
 
-<!-- Academic Life, Campus Life, Newsletter -->
-<div class="block">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-sm-4" style="min-height: 265px;">
-                <section id="academic-life">
-                    <header>
-                        <h2>Academic Life &amp; Research</h2>
-                    </header>
-                    <div class="section-content">
-                        <ul class="list-links">
-                            <li><a href="http://www.themestarz.net/html/universo/index2.html#">Programs and Areas</a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/index2.html#">Research</a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/index2.html#">Graduate &amp; Postdoctoral Programs</a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/index2.html#">Continuing Studies</a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/index2.html#">International Activities</a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/index2.html#">Course Calendars &amp; Listings</a></li>
-                        </ul>
-                    </div><!-- /.section-content -->
-                </section><!-- /.academic-life -->
-            </div><!-- /.col-md-4 -->
 
-            <div class="col-md-4 col-sm-4" style="min-height: 265px;">
-                <section id="campus-life">
-                    <header>
-                        <h2>Campus Life</h2>
-                    </header>
-                    <div class="section-content">
-                        <ul class="list-links">
-                            <li><a href="http://www.themestarz.net/html/universo/index2.html#">Athletics &amp; Recreation</a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/index2.html#">Clubs &amp; Extra-curricular Activities</a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/index2.html#">Health &amp; Wellness</a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/index2.html#">Housing &amp; Residence</a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/index2.html#">Arts &amp; Culture</a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/index2.html#">Student IT Services</a></li>
-                        </ul>
-                    </div><!-- /.section-content -->
-                </section><!-- /.campus-life -->
-            </div><!-- /.col-md-4 -->
-
-            <div class="col-md-4 col-sm-4" style="min-height: 265px;">
-                <section id="newsletter">
-                    <header>
-                        <h2>Newsletter</h2>
-                        <div class="section-content">
-                            <div class="newsletter">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Your e-mail">
-                                    <span class="input-group-btn">
-                                        <button type="submit" class="btn"><i class="fa fa-angle-right"></i></button>
-                                    </span>
-                                </div><!-- /input-group -->
-                            </div><!-- /.newsletter -->
-                            <p class="opacity-50">Ut tincidunt, quam in tincidunt vestibulum, turpis ipsum porttitor nisi, et fermentum augue
-                                lit eu neque. In at tempor dolor, sit amet dictum lacus. Praesent porta orci eget laoreet ultrices.
-                            </p>
-                        </div><!-- /.section-content -->
-                    </header>
-                </section><!-- /.newsletter -->
-            </div><!-- /.col-md-4 -->
-        </div><!-- /.row -->
-    </div><!-- /.container -->
-</div>
 <!-- end Academic Life, Campus Life, Newsletter -->
 
-<!-- Divisions, Connect -->
-<div class="block">
-    <div class="container">
-        <div class="block-dark-background">
-            <div class="row">
-                <div class="col-md-3 col-sm-4" style="min-height: 289px;">
-                    <section id="division" class="has-dark-background">
-                        <header>
-                            <h2>Divisions</h2>
-                        </header>
-                        <div class="section-content">
-                            <ul class="list-links">
-                                <li><a href="http://www.themestarz.net/html/universo/index2.html#">Accounting &amp; Finance</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/index2.html#">Advertising &amp; Marketing</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/index2.html#">Architecture &amp; Interior</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/index2.html#">Arts &amp; Design</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/index2.html#">Broadcasting &amp; Journalism</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/index2.html#">Business &amp; Management</a></li>
-                                <li><a href="http://www.themestarz.net/html/universo/index2.html#">Computing &amp; IT</a></li>
-                            </ul>
-                        </div><!-- /.section-content -->
-                    </section><!-- #.divisions -->
-                </div>
-                <div class="col-md-9 col-sm-8" style="min-height: 289px;">
-                    <section id="connect" class="has-dark-background">
-                        <header>
-                            <h2>Connect</h2>
-                        </header>
-                        <div class="connect-block">
-                            <div class="row">
-                                <div class="col-md-3" style="min-height: 103px;">
-                                    <ul class="nav nav-pills nav-stacked">
-                                        <li class="active"><a href="http://www.themestarz.net/html/universo/index2.html#tab-twitter" data-toggle="pill"><i class="fa fa-twitter"></i>Twitter</a></li>
-                                        <li><a href="http://www.themestarz.net/html/universo/index2.html#tab-facebook" data-toggle="pill"><i class="fa fa-facebook"></i>Facebook</a></li>
-                                    </ul>
-                                </div>
-                                <div class="tab-content" style="min-height: 103px;">
-                                    <div class="tab-pane fade in active" id="tab-twitter">
-                                        <div class="col-md-3">
-                                            <article class="social-post twitter-post">
-                                                <header>15 minutes ago</header>
-                                                <figure><a href="http://www.themestarz.net/html/universo/index2.html#">@universo</a></figure>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam odio augue, accumsan ut massa ut, faucibus gravida turpis.
-                                                    <a href="http://bit.ly/1bMyz64">http://bit.ly/1bMyz64</a>
-                                                </p>
-                                            </article><!-- /.twitter-post -->
-                                        </div>
-                                        <div class="col-md-3">
-                                            <article class="social-post twitter-post">
-                                                <header>2 hours ago</header>
-                                                <figure><a href="http://www.themestarz.net/html/universo/index2.html#">@universo</a></figure>
-                                                <p>
-                                                    Nullam odio augue, accumsan ut massa ut, faucibus gravida turpis. Nulla eleifend libero mi, at consequat tellus.
-                                                    <a href="http://bit.ly/1bMyz64">http://bit.ly/1bMyz64</a>
-                                                </p>
-                                            </article><!-- /.twitter-post -->
-                                        </div>
-                                        <div class="col-md-3">
-                                            <article class="social-post twitter-post">
-                                                <header>February 02, 2014</header>
-                                                <figure><a href="http://www.themestarz.net/html/universo/index2.html#">@universo</a></figure>
-                                                <p>
-                                                    Ut at arcu sed justo laoreet iaculis ut nec leo. Aliquam laoreet orci eu egestas fermentum.
-                                                    <a href="http://bit.ly/1bMyz64">http://bit.ly/1bMyz64</a>
-                                                </p>
-                                            </article><!-- /.twitter-post -->
-                                        </div>
-                                    </div><!-- /.tab-twitter -->
-                                    <div class="tab-pane fade" id="tab-facebook">
-                                        <div class="col-md-3">
-                                            <article class="social-post facebook-post">
-                                                <header>30 minutes ago</header>
-                                                <figure><a href="http://www.themestarz.net/html/universo/index2.html#">@universo</a></figure>
-                                                <p>
-                                                    Ut at arcu sed justo laoreet iaculis ut nec leo. Aliquam laoreet orci eu egestas fermentum.
-                                                    <a href="http://bit.ly/1bMyz64">http://bit.ly/1bMyz64</a>
-                                                </p>
-                                            </article><!-- /.twitter-post -->
-                                        </div>
-                                        <div class="col-md-3">
-                                            <article class="social-post facebook-post">
-                                                <header>4 days ago</header>
-                                                <figure><a href="http://www.themestarz.net/html/universo/index2.html#">@universo</a></figure>
-                                                <p>
-                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam odio augue, accumsan ut massa ut, faucibus gravida turpis.
-                                                    <a href="http://bit.ly/1bMyz64">http://bit.ly/1bMyz64</a>
-                                                </p>
-                                            </article><!-- /.twitter-post -->
-                                        </div>
-                                        <div class="col-md-3">
-                                            <article class="social-post facebook-post">
-                                                <header>One week ago</header>
-                                                <figure><a href="http://www.themestarz.net/html/universo/index2.html#">@universo</a></figure>
-                                                <p>
-                                                    Nullam odio augue, accumsan ut massa ut, faucibus gravida turpis. Nulla eleifend libero mi, at consequat tellus.
-                                                    <a href="http://bit.ly/1bMyz64">http://bit.ly/1bMyz64</a>
-                                                </p>
-                                            </article><!-- /.twitter-post -->
-                                        </div>
-                                    </div><!-- /.tab-twitter -->
-                                </div><!-- /.tab-content -->
-                            </div><!-- /.row -->
-                        </div><!-- /.section-content -->
-                    </section><!-- #.divisions -->
-                </div><!-- /.col-md-9 -->
-            </div><!-- /.row -->
-        </div><!-- /.block-dark-background -->
-    </div><!-- /.container -->
-</div>
+
 <!-- end Divisions, Connect -->
 
-<!-- Our Professors, Gallery -->
-<div class="block">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-sm-4" style="min-height: 335px;">
-                <section id="our-professors">
-                    <header>
-                        <h2>Our Professors</h2>
-                    </header>
-                    <div class="section-content">
-                        <div class="professors">
-                            <article class="professor-thumbnail">
-                                <figure class="professor-image"><a href="http://www.themestarz.net/html/universo/member-detail.html"><img src="{{ asset('professor.jpg')}}" alt=""></a></figure>
-                                <aside>
-                                    <header>
-                                        <a href="http://www.themestarz.net/html/universo/member-detail.html">Prof. Mathew Davis</a>
-                                        <div class="divider"></div>
-                                        <figure class="professor-description">Applied Science and Engineering</figure>
-                                    </header>
-                                    <a href="http://www.themestarz.net/html/universo/member-detail.html" class="show-profile">Show Profile</a>
-                                </aside>
-                            </article><!-- /.professor-thumbnail -->
-                            <article class="professor-thumbnail">
-                                <figure class="professor-image"><a href="http://www.themestarz.net/html/universo/member-detail.html"><img src="{{ asset('professor-02.jpg')}}" alt=""></a></figure>
-                                <aside>
-                                    <header>
-                                        <a href="http://www.themestarz.net/html/universo/member-detail.html">Prof. Jane Stairway</a>
-                                        <div class="divider"></div>
-                                        <figure class="professor-description">Applied Science and Engineering</figure>
-                                    </header>
-                                    <a href="http://www.themestarz.net/html/universo/member-detail.html" class="show-profile">Show Profile</a>
-                                </aside>
-                            </article><!-- /.professor-thumbnail -->
-                            <a href="http://www.themestarz.net/html/universo/index2.html" class="read-more stick-to-bottom">All Professors</a>
-                        </div><!-- /.professors -->
-                    </div><!-- /.section-content -->
-                </section><!-- /.our-professors -->
-            </div><!-- /.col-md-4 -->
-
-            <div class="col-md-8 col-sm-8" style="min-height: 335px;">
-                <section id="gallery">
-                    <header>
-                        <h2>Gallery</h2>
-                    </header>
-                    <div class="section-content">
-                        <ul class="gallery-list">
-                            <li><a href="http://www.themestarz.net/html/universo/assets/img/gallery-big-image.jpg" class="image-popup"><img src="{{ asset('image-01.jpg')}}" alt=""></a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/assets/img/gallery-big-image.jpg" class="image-popup"><img src="{{ asset('image-02.jpg')}}" alt=""></a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/assets/img/gallery-big-image.jpg" class="image-popup"><img src="{{ asset('image-03.jpg')}}" alt=""></a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/assets/img/gallery-big-image.jpg" class="image-popup"><img src="{{ asset('image-04.jpg')}}" alt=""></a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/assets/img/gallery-big-image.jpg" class="image-popup"><img src="{{ asset('image-05.jpg')}}" alt=""></a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/assets/img/gallery-big-image.jpg" class="image-popup"><img src="{{ asset('image-06.jpg')}}" alt=""></a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/assets/img/gallery-big-image.jpg" class="image-popup"><img src="{{ asset('image-07.jpg')}}" alt=""></a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/assets/img/gallery-big-image.jpg" class="image-popup"><img src="{{ asset('image-08.jpg')}}" alt=""></a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/assets/img/gallery-big-image.jpg" class="image-popup"><img src="{{ asset('image-09.jpg')}}" alt=""></a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/assets/img/gallery-big-image.jpg" class="image-popup"><img src="{{ asset('image-10.jpg')}}" alt=""></a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/assets/img/gallery-big-image.jpg" class="image-popup"><img src="{{ asset('image-11.jpg')}}" alt=""></a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/assets/img/gallery-big-image.jpg" class="image-popup"><img src="{{ asset('image-12.jpg')}}" alt=""></a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/assets/img/gallery-big-image.jpg" class="image-popup"><img src="{{ asset('image-13.jpg')}}" alt=""></a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/assets/img/gallery-big-image.jpg" class="image-popup"><img src="{{ asset('image-14.jpg')}}" alt=""></a></li>
-                        </ul>
-                        <a href="http://www.themestarz.net/html/universo/index2.html" class="read-more">Go to Gallery</a>
-                    </div><!-- /.section-content -->
-                </section><!-- /.gallery -->
-            </div><!-- /.col-md-4 -->
-
-        </div><!-- /.row -->
-    </div><!-- /.container -->
-</div>
 <!-- end Our Professors, Gallery -->
 
-<!-- Partners, Make a Donation -->
-<div class="block">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9 col-sm-9" style="min-height: 151px;">
-                <section id="partners">
-                    <header>
-                        <h2>Partners &amp; Donors</h2>
-                    </header>
-                    <div class="section-content">
-                        <div class="logos">
-                            <div class="logo"><a href="http://www.themestarz.net/html/universo/index2.html"><img src="{{ asset('logo-partner-01.png')}}" alt=""></a></div>
-                            <div class="logo"><a href="http://www.themestarz.net/html/universo/index2.html"><img src="{{ asset('logo-partner-02.png')}}" alt=""></a></div>
-                            <div class="logo"><a href="http://www.themestarz.net/html/universo/index2.html"><img src="{{ asset('logo-partner-03.png')}}" alt=""></a></div>
-                            <div class="logo"><a href="http://www.themestarz.net/html/universo/index2.html"><img src="{{ asset('logo-partner-04.png')}}" alt=""></a></div>
-                            <div class="logo"><a href="http://www.themestarz.net/html/universo/index2.html"><img src="{{ asset('logo-partner-05.png')}}" alt=""></a></div>
-                        </div>
-                    </div>
-                </section>
-            </div><!-- /.col-md-9 -->
-            <div class="col-md-3 col-sm-3" style="min-height: 151px;">
-                <section id="donation">
-                    <header>
-                        <h2>Make a Donation</h2>
-                    </header>
-                    <div class="section-content">
-                        <a href="http://www.themestarz.net/html/universo/index2.html" class="universal-button">
-                            <h3>Support the University of Universo!</h3>
-                            <figure class="date"><i class="fa fa-arrow-right"></i></figure>
-                        </a>
-                    </div><!-- /.section-content -->
-                </section>
-            </div><!-- /.col-md-3 -->
-        </div><!-- /.row -->
-    </div><!-- /.container -->
-</div>
+
 <!-- end Partners, Make a Donation -->
 </div>
-<!-- end Page Content -->
 
-<!-- Footer -->
-<footer id="page-footer">
-    <section id="footer-top">
-        <div class="container">
-            <div class="footer-inner">
-                <div class="footer-social">
-                    <figure>Follow us:</figure>
-                    <div class="icons">
-                        <a href="http://www.themestarz.net/html/universo/index2.html"><i class="fa fa-twitter"></i></a>
-                        <a href="http://www.themestarz.net/html/universo/index2.html"><i class="fa fa-facebook"></i></a>
-                        <a href="http://www.themestarz.net/html/universo/index2.html"><i class="fa fa-pinterest"></i></a>
-                        <a href="http://www.themestarz.net/html/universo/index2.html"><i class="fa fa-youtube-play"></i></a>
-                    </div><!-- /.icons -->
-                </div><!-- /.social -->
-                <div class="search pull-right">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    <span class="input-group-btn">
-                        <button type="submit" class="btn"><i class="fa fa-search"></i></button>
-                    </span>
-                    </div><!-- /input-group -->
-                </div><!-- /.pull-right -->
-            </div><!-- /.footer-inner -->
-        </div><!-- /.container -->
-    </section><!-- /#footer-top -->
-
-    <section id="footer-content">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3 col-sm-12" style="min-height: 255px;">
-                    <aside class="logo">
-                        <img src="{{ asset('logo-white.png')}}" class="vertical-center">
-                    </aside>
-                </div><!-- /.col-md-3 -->
-                <div class="col-md-3 col-sm-4" style="min-height: 255px;">
-                    <aside>
-                        <header><h4>Contact Us</h4></header>
-                        <address>
-                            <strong>University of Universo</strong>
-                            <br>
-                            <span>4877 Spruce Drive</span>
-                            <br><br>
-                            <span>West Newton, PA 15089</span>
-                            <br>
-                            <abbr title="Telephone">Telephone:</abbr> +1 (734) 123-4567
-                            <br>
-                            <abbr title="Email">Email:</abbr> <a href="http://www.themestarz.net/html/universo/index2.html#">questions@youruniversity.com</a>
-                        </address>
-                    </aside>
-                </div><!-- /.col-md-3 -->
-                <div class="col-md-3 col-sm-4" style="min-height: 255px;">
-                    <aside>
-                        <header><h4>Important Links</h4></header>
-                        <ul class="list-links">
-                            <li><a href="http://www.themestarz.net/html/universo/index2.html#">Future Students</a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/index2.html#">Alumni</a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/index2.html#">Give a Donation</a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/index2.html#">Professors</a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/index2.html#">Libary &amp; Health</a></li>
-                            <li><a href="http://www.themestarz.net/html/universo/index2.html#">Research</a></li>
-                        </ul>
-                    </aside>
-                </div><!-- /.col-md-3 -->
-                <div class="col-md-3 col-sm-4" style="min-height: 255px;">
-                    <aside>
-                        <header><h4>About Universo</h4></header>
-                        <p>Aliquam feugiat turpis quis felis adipiscing, non pulvinar odio lacinia.
-                            Aliquam elementum pharetra fringilla. Duis blandit, sapien in semper vehicula,
-                            tellus elit gravida odio, ac tincidunt nisl mi at ante. Vivamus tincidunt nunc nibh.
-                        </p>
-                        <div>
-                            <a href="http://www.themestarz.net/html/universo/index2.html" class="read-more">All News</a>
-                        </div>
-                    </aside>
-                </div><!-- /.col-md-3 -->
-            </div><!-- /.row -->
-        </div><!-- /.container -->
-        <div class="background"><img src="{{ asset('background-city.png')}}" class="" alt=""></div>
-    </section><!-- /#footer-content -->
-
-    <section id="footer-bottom">
-        <div class="container">
-            <div class="footer-inner">
-                <div class="copyright">© Theme Starz, All rights reserved</div><!-- /.copyright -->
-            </div><!-- /.footer-inner -->
-        </div><!-- /.container -->
-    </section><!-- /#footer-bottom -->
-
-</footer>
-<!-- end Footer -->
-
-</div>
-<!-- end Wrapper -->
-
-<script type="text/javascript" src="{{ asset('jquery-2.1.0.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('jquery-migrate-1.2.1.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('bootstrap.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('selectize.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('owl.carousel.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('jquery.validate.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('jquery.placeholder.js')}}"></script>
-<script type="text/javascript" src="{{ asset('jQuery.equalHeights.js')}}"></script>
-<script type="text/javascript" src="{{ asset('icheck.min.js')}}"></script>
-<script type="text/javascript" src="{{ asset('jquery.vanillabox-0.1.5.min.js')}}"></script>
-
-<script type="text/javascript" src="{{ asset('custom.js')}}"></script>
-
-
-</body></html>
+@endsection

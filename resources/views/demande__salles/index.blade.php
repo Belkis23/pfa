@@ -45,6 +45,7 @@
                 <table id="table" class="table table-striped ">
                     <thead>
                         <tr>
+                             <th>Day</th>
                             <th>Club</th>
                             <th>Salle</th>
                             <th>Date</th>
@@ -58,9 +59,11 @@
                     <tbody>
                     @foreach($demandeSalles as $demandeSalle)
                         <tr>
+                            <td>{{  date('l', strtotime($demandeSalle->date))}}</td>
                             <td>{{ optional($demandeSalle->club)->name }}</td>
                             <td>{{ optional($demandeSalle->salle)->name }}</td>
-                            <td>{{ $demandeSalle->date }}</td>
+                            <td>{{  $demandeSalle->date}}</td>
+                             
                             <td>{{ $demandeSalle->Start }}</td>
                             <td>{{ $demandeSalle->End }}</td>
                              <td>
@@ -220,7 +223,7 @@ $(function () {
          var start = $("#start").val();
          var end = $("#end").val();
 
-         if(start > end && start != null && end !=null){
+         if(start < end && start != null && end !=null){
             window.location  = "{{url('/printsale')}}?start="+start+"&end="+end;
          }
 

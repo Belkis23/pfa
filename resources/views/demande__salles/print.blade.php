@@ -170,11 +170,13 @@
           <table class="table table-striped">
               <thead>
             <tr>
+              <th>Day</th>
             <th>Club</th>
+            
                             <th>Salle</th>
                             <th>Date</th>
-                            <th>Start</th>
-                            <th>End</th>
+                            <th>Time</th>
+                           
               
               
             </tr>
@@ -182,11 +184,13 @@
             <tbody>
             
                 @foreach($demandeSalles as $demandeSalle)
-           <tr>  <td>{{ optional($demandeSalle->club)->name }}</td>
+           <tr> 
+             <td>{{  date('l', strtotime($demandeSalle->date))}}</td>
+            <td>{{ optional($demandeSalle->club)->name }}</td>
                             <td>{{ optional($demandeSalle->salle)->name }}</td>
                             <td>{{ $demandeSalle->date }}</td>
-                            <td>{{ $demandeSalle->Start }}</td>
-                            <td>{{ $demandeSalle->End }}</td></tr>
+                            <td>{{ $demandeSalle->Start }}.......{{ $demandeSalle->End }}</td>
+                         </tr>
           @endforeach
 
             </tbody>

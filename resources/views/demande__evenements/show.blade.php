@@ -46,7 +46,7 @@
             <dt>Lieu</dt>
             <dd>{{ $demandeEvenement->Lieu }}</dd>
             <dt>Date</dt>
-            <dd>{{ $demandeEvenement->Date }}</dd>
+            <dd>{{ $demandeEvenement->date }}</dd>
             <dt>Start</dt>
             <dd>{{ $demandeEvenement->Start }}</dd>
             <dt>End</dt>

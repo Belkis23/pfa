@@ -23,6 +23,7 @@ class CreatePostsTable extends Migration
             $table->string('date')->nullable();
             $table->string('lieu')->nullable();
             $table->integer('etudiant_id')->unsigned()->nullable()->index();
+            $table->boolean('publuc')->default('0');
 
         });
     }

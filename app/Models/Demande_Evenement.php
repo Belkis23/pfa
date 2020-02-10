@@ -31,7 +31,7 @@ class Demande_Evenement extends Model
                   'club_id',
                   'Name',
                   'Lieu',
-                  'Date',
+                  'date',
                   'Start',
                   'End',
                   'description'
