@@ -8,6 +8,7 @@ use App\Models\Demande_Evenement;
 use Illuminate\Http\Request;
 use Exception;
 use Auth;
+use App\Models\etudiant;
 class DemandeEvenementsController extends Controller
 {
 
@@ -161,7 +162,7 @@ class DemandeEvenementsController extends Controller
                 'club_id' => 'nullable',
             'Name' => 'string|min:1|max:255|nullable',
             'Lieu' => 'string|min:1|nullable',
-            'Date' => 'string|min:1|nullable',
+            'date' => 'string|min:1|nullable',
             'Start' => 'string|min:1|nullable',
             'End' => 'string|min:1|nullable',
             'description' => 'string|min:1|max:1000|nullable', 
@@ -186,8 +187,11 @@ class DemandeEvenementsController extends Controller
 
 
      public function printevent(Request $request){
+
         $demandeEvenements = Demande_Evenement::where('confirmed','=',1)->whereBetween('date', [$request->start, $request->end])->with('club')->get();
-       return view('demande__evenements.print', compact('demandeEvenements'));
+       
+        $etudiant = etudiant::all();
+       return view('demande__evenements.print', compact('demandeEvenements','etudiant'));
     }
 
 }

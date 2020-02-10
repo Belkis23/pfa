@@ -170,12 +170,14 @@
           <table class="table table-striped">
               <thead>
             <tr>
+                            <th>Day</th>
                             <th>Club</th>
                             <th>Name</th>
                             <th>Lieu</th>
+                            <th>Respensable</th>
                             <th>Date</th>
-                            <th>Start</th>
-                            <th>End</th>
+                            <th>Time</th>
+                            
               
               
             </tr>
@@ -184,12 +186,22 @@
             
                  @foreach($demandeEvenements as $demandeEvenement)
                         <tr>
+
+                          <td>{{  date('l', strtotime($demandeEvenement->date))}}</td>
                             <td>{{ optional($demandeEvenement->club)->name }}</td>
                             <td>{{ $demandeEvenement->Name }}</td>
                             <td>{{ $demandeEvenement->Lieu }}</td>
+                            <td>
+                              @foreach($etudiant as $etudian)
+                              @if(optional($demandeEvenement->club)->etudiant_id == $etudian->id)
+                              {{ $etudian->name }}
+                              @endif
+                              @endforeach
+                            </td>
                             <td>{{ $demandeEvenement->Date }}</td>
-                            <td>{{ $demandeEvenement->Start }}</td>
-                            <td>{{ $demandeEvenement->End }}</td>
+
+                            <td>{{ $demandeEvenement->Start }}....{{ $demandeEvenement->End }}</td>
+                            
                 </tr>
           @endforeach
 

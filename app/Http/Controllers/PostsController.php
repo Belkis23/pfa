@@ -9,6 +9,9 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Exception;
 
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image as InterventionImage;
+
 class PostsController extends Controller
 {
 
@@ -46,6 +49,7 @@ $etudiants = Etudiant::pluck('name','id')->all();
      */
     public function store(Request $request)
     {
+
         try {
             
             $data = $this->getData($request);
@@ -55,6 +59,7 @@ $etudiants = Etudiant::pluck('name','id')->all();
             return redirect()->route('posts.post.index')
                 ->with('success_message', 'Post was successfully added.');
         } catch (Exception $exception) {
+            dd($exception);
 
             return back()->withInput()
                 ->withErrors(['unexpected_error' => 'Unexpected error occurred while trying to process your request.']);
@@ -153,10 +158,12 @@ $etudiants = Etudiant::pluck('name','id')->all();
             'Titre' => 'string|min:1|nullable',
             'description' => 'string|min:1|max:1000|nullable',
             'photo' => ['file','nullable'],
-            'date' => 'string|min:1|nullable',
+            'date' => 'nullable',
             'lieu' => 'string|min:1|nullable',
+            'publuc' => 'nullable',
             'etudiant_id' => 'nullable', 
         ];
+     
 
         
         $data = $request->validate($rules);
@@ -165,7 +172,17 @@ $etudiants = Etudiant::pluck('name','id')->all();
             $data['photo'] = null;
         }
         if ($request->hasFile('photo')) {
-            $data['photo'] = $this->moveFile($request->file('photo'));
+            // $data['photo'] = $this->moveFile($request->file('photo'));
+            $path = Storage::disk('images')->put('post/', $request->file('photo'));
+    // Save thumb
+    $img = InterventionImage::make($request->file('photo'))->widen(100);
+    Storage::disk('thumbs')->put($path, $img->encode());
+    $data['photo'] = $path;
+        }
+        if($data['publuc']=="on"){
+           $data['publuc'] = 1; 
+        }else{
+           $data['publuc'] = 0;  
         }
 
 

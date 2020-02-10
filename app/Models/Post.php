@@ -34,7 +34,8 @@ class Post extends Model
                   'photo',
                   'date',
                   'lieu',
-                  'etudiant_id'
+                  'etudiant_id',
+                  'publuc'
               ];
 
     /**

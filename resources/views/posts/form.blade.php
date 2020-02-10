@@ -74,19 +74,15 @@
     </div>
 </div>
 
-<div class="form-group {{ $errors->has('etudiant_id') ? 'has-error' : '' }}">
-    <label for="etudiant_id" class="col-md-2 control-label">Etudiant</label>
+
+<div class="form-group {{ $errors->has('lieu') ? 'has-error' : '' }}">
+    <label for="lieu" class="col-md-2 control-label">publuc</label>
     <div class="col-md-10">
-        <select class="form-control" id="etudiant_id" name="etudiant_id">
-        	    <option value="" style="display: none;" {{ old('etudiant_id', optional($post)->etudiant_id ?: '') == '' ? 'selected' : '' }} disabled selected>Select etudiant</option>
-        	@foreach ($etudiants as $key => $etudiant)
-			    <option value="{{ $key }}" {{ old('etudiant_id', optional($post)->etudiant_id) == $key ? 'selected' : '' }}>
-			    	{{ $etudiant }}
-			    </option>
-			@endforeach
-        </select>
-        
-        {!! $errors->first('etudiant_id', '<p class="help-block">:message</p>') !!}
+ 
+        <input id="toggle-trigger" name="publuc" type="checkbox" data-toggle="toggle" {{ old('publuc') == '1' ? 'checked' : '' }}>
+
     </div>
 </div>
+
+<input type="hidden" name="etudiant_id" value="{{Auth::guard('etudiant')->user()->id}}">
 

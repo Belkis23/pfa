@@ -46,5 +46,22 @@
     </div>
 
 @endsection
+@section('js')
+<script>
+  function toggleOn() {
+    $('#toggle-trigger').bootstrapToggle('on')
+  }
+  function toggleOff() {
+    $('#toggle-trigger').bootstrapToggle('off')  
+  }
+  function toggleOnByInput() {
+    $('#toggle-trigger').prop('checked', true).change()
+  }
+  function toggleOffByInput() {
+    $('#toggle-trigger').prop('checked', false).change()
+  }
+</script>
+
+@endsection
 
 

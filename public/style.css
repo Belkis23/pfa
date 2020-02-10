@@ -458,26 +458,7 @@ ul.list-links a:hover {
   font-size: 12px;
   font-weight: bold;
 }
-.link-calendar:after {
-  text-shadow: none;
-  -webkit-font-smoothing: antialiased;
-  font-family: 'fontawesome';
-  speak: none;
-  font-weight: normal;
-  font-variant: normal;
-  line-height: 1;
-  text-transform: none;
-  -moz-transition: 0.4s;
-  -o-transition: 0.4s;
-  -webkit-transition: 0.4s;
-  transition: 0.4s;
-  color: #ea6645;
-  content: "\f073";
-  display: inline-block;
-  font-size: 16px;
-  margin-left: 5px;
-  position: relative;
-  top: 1px;
+
 }
 
 .connect-block .nav-pills li.active a {

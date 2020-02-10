@@ -31,11 +31,11 @@
     </div>
 </div>
 
-<div class="form-group {{ $errors->has('Date') ? 'has-error' : '' }}">
+<div class="form-group {{ $errors->has('date') ? 'has-error' : '' }}">
     <label for="Date" class="col-md-2 control-label">Date</label>
     <div class="col-md-10">
-        <input class="form-control" name="Date" type="date" id="Date" value="{{ old('Date', optional($demandeEvenement)->Date) }}" minlength="1" placeholder="Enter date here...">
-        {!! $errors->first('Date', '<p class="help-block">:message</p>') !!}
+        <input class="form-control" name="date" type="date" id="date" value="{{ old('date', optional($demandeEvenement)->date) }}" minlength="1" placeholder="Enter date here...">
+        {!! $errors->first('date', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
 

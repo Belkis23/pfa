@@ -44,6 +44,7 @@
                 <table  id="table" class="table table-striped ">
                     <thead>
                         <tr>
+                            <th>Day</th>
                             <th>Club</th>
                             <th>Name</th>
                             <th>Lieu</th>
@@ -58,10 +59,11 @@
                     <tbody>
                     @foreach($demandeEvenements as $demandeEvenement)
                         <tr>
+                             <td>{{  date('l', strtotime($demandeEvenement->date))}}</td>
                             <td>{{ optional($demandeEvenement->club)->name }}</td>
                             <td>{{ $demandeEvenement->Name }}</td>
                             <td>{{ $demandeEvenement->Lieu }}</td>
-                            <td>{{ $demandeEvenement->Date }}</td>
+                            <td>{{ $demandeEvenement->date }}</td>
                             <td>{{ $demandeEvenement->Start }}</td>
                             <td>{{ $demandeEvenement->End }}</td>
                              <td id="no{{$demandeEvenement->id}}">
