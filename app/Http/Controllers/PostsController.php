@@ -11,7 +11,7 @@ use Exception;
 
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image as InterventionImage;
-
+use Auth;
 class PostsController extends Controller
 {
 
@@ -34,7 +34,13 @@ class PostsController extends Controller
      */
     public function create()
     {
-        $clubs = Club::pluck('name','id')->all();
+        if(Auth::guard('etudiant')->check()){
+            
+
+$clubs = Club::where('etudiant_id',Auth::guard('etudiant')->user()->id)->get();
+         }else{
+        $clubs = Club::all();
+    }
 $etudiants = Etudiant::pluck('name','id')->all();
         
         return view('posts.create', compact('clubs','etudiants'));
@@ -90,7 +96,13 @@ $etudiants = Etudiant::pluck('name','id')->all();
     public function edit($id)
     {
         $post = Post::findOrFail($id);
-        $clubs = Club::pluck('name','id')->all();
+         if(Auth::guard('etudiant')->check()){
+            
+
+$clubs = Club::where('etudiant_id',Auth::guard('etudiant')->user()->id)->get();
+         }else{
+        $clubs = Club::all();
+    }
 $etudiants = Etudiant::pluck('name','id')->all();
 
         return view('posts.edit', compact('post','clubs','etudiants'));
@@ -163,7 +175,7 @@ $etudiants = Etudiant::pluck('name','id')->all();
             'publuc' => 'nullable',
             'etudiant_id' => 'nullable', 
         ];
-     
+
 
         
         $data = $request->validate($rules);
@@ -173,7 +185,7 @@ $etudiants = Etudiant::pluck('name','id')->all();
         }
         if ($request->hasFile('photo')) {
             // $data['photo'] = $this->moveFile($request->file('photo'));
-            $path = Storage::disk('images')->put('post/', $request->file('photo'));
+            $path = Storage::disk('images')->put('post', $request->file('photo'));
     // Save thumb
     $img = InterventionImage::make($request->file('photo'))->widen(100);
     Storage::disk('thumbs')->put($path, $img->encode());

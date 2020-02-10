@@ -3,12 +3,12 @@
     <label for="club_id" class="col-md-2 control-label">Club</label>
     <div class="col-md-10">
         <select class="form-control" id="club_id" name="club_id">
-        	    <option value="" style="display: none;" {{ old('club_id', optional($post)->club_id ?: '') == '' ? 'selected' : '' }} disabled selected>Select club</option>
-        	@foreach ($clubs as $key => $club)
-			    <option value="{{ $key }}" {{ old('club_id', optional($post)->club_id) == $key ? 'selected' : '' }}>
-			    	{{ $club }}
-			    </option>
-			@endforeach
+                <option value="" style="display: none;" {{ old('club_id', optional($post)->club_id ?: '') == '' ? 'selected' : '' }} disabled selected>Select club</option>
+            @foreach ($clubs as $key => $club)
+                <option value="{{ $club->id }}" {{ old('club_id', optional($post)->club_id) == $club->id ? 'selected' : '' }}>
+                    {{ $club->name }}
+                </option>
+            @endforeach
         </select>
         
         {!! $errors->first('club_id', '<p class="help-block">:message</p>') !!}
@@ -61,7 +61,7 @@
 <div class="form-group {{ $errors->has('date') ? 'has-error' : '' }}">
     <label for="date" class="col-md-2 control-label">Date</label>
     <div class="col-md-10">
-        <input class="form-control" name="date" type="text" id="date" value="{{ old('date', optional($post)->date) }}" minlength="1" placeholder="Enter date here...">
+        <input class="form-control" name="date" type="date" id="date" value="{{ old('date', optional($post)->date) }}" minlength="1" placeholder="Enter date here...">
         {!! $errors->first('date', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
