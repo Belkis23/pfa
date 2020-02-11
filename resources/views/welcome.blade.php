@@ -16,12 +16,12 @@
                          @foreach($clubs as $key => $club)
                         <article>
                             <figure class="date"><i class="fa fa-users"></i>{{$club->created_at}}</figure>
-                            <header><a href="#">{{$club->name}}</a></header>
+                            <header><a href="{{url('/clubshow',$club->id)}}">{{$club->name}}</a></header>
                         </article><!-- /article -->
                         @endforeach
                         
                     </div><!-- /.section-content -->
-                    <a href="{{url('/')}}" style="color: #252525;
+                    <a href="{{url('/club')}}" style="color: #252525;
     display: inline-block;
     font-size: 14px;
     font-weight: bold;

@@ -18,6 +18,8 @@ Route::POST('/updateetudin', 'Frent\homeController@updateetudin')->name('updatee
 
 Route::POST('/changepasse', 'Frent\homeController@changepasse')->name('changepasse');
 
+Route::get('/club', 'Frent\clubController@index')->name('club');
+Route::get('/clubshow/{id}', 'Frent\clubController@show')->name('clubshow');
 
 
 
