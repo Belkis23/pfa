@@ -80,6 +80,16 @@
                            
                         </li>
 
+                         @if(Route::currentRouteName() == 'club' )
+                        <li class="active">
+                        @else
+                        <li class="">
+                        @endif
+                            <a href="{{url('/club')}}">club</a>
+
+                           
+                        </li>
+
 
                        
                        

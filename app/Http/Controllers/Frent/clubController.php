@@ -13,6 +13,8 @@ use App\Models\etudiant;
 use App\Models\classe_formation;
 use App\Models\Post;
 use App\Models\membre_club;
+use App\Models\club_image;
+
 class clubController extends Controller
 {
     public function index()
@@ -28,6 +30,8 @@ class clubController extends Controller
          $etudiant = Etudiant::find($club->etudiant_id);
          $club->mombre = 0;
         //dd($today);
+$images = club_image::where('club_id',$club->id)->get();
+
         
          if(Auth::guard('etudiant')->check()){
          	 $membreClub = membre_club::where('club_id',$club->id)->where('etudiant_id',Auth::guard('etudiant')->user()->id)->first();
@@ -66,5 +70,13 @@ class clubController extends Controller
        
 
         return view('Frent.club', compact('evenements','club','etudiant','classeFormations','posts'));
+    }
+
+    public function post($id){
+         $post = Post::with('club','etudiant')->findOrFail($id);
+
+        $images = club_image::where('post_id',$id)->get();
+       
+         return view('Frent.post', compact('post','images'));
     }
 }

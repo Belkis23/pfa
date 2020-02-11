@@ -83,6 +83,6 @@
 
     </div>
 </div>
-
+@if(Auth::guard('etudiant')->check())
 <input type="hidden" name="etudiant_id" value="{{Auth::guard('etudiant')->user()->id}}">
-
+@endif
