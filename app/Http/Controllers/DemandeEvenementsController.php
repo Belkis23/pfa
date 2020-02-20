@@ -18,7 +18,8 @@ class DemandeEvenementsController extends Controller
      * @return Illuminate\View\View
      */
     public function index()
-    {if(Auth::guard('etudiant')->check()){
+    {
+        if(Auth::guard('etudiant')->check()){
              $clubs = club::where('etudiant_id',Auth::guard('etudiant')->user()->id)->with('etudiant')->first();
              $demandeEvenements = Demande_Evenement::where('club_id',$clubs->id)->paginate(25);
          }else{

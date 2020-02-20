@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Club;
 use App\Models\Etudiant;
-use App\Models\Post;
 use Illuminate\Http\Request;
 use Exception;
-
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image as InterventionImage;
 use Auth;
+use App\Models\club_image;
+use App\Models\Post;
 class PostsController extends Controller
 {
 
@@ -96,6 +96,7 @@ $etudiants = Etudiant::pluck('name','id')->all();
     public function edit($id)
     {
         $post = Post::findOrFail($id);
+        $images = club_image::where('post_id',$post->id)->get();
          if(Auth::guard('etudiant')->check()){
             
 
@@ -105,7 +106,7 @@ $clubs = Club::where('etudiant_id',Auth::guard('etudiant')->user()->id)->get();
     }
 $etudiants = Etudiant::pluck('name','id')->all();
 
-        return view('posts.edit', compact('post','clubs','etudiants'));
+        return view('posts.edit', compact('post','clubs','etudiants','images'));
     }
 
     /**
@@ -220,5 +221,37 @@ $etudiants = Etudiant::pluck('name','id')->all();
         $saved = $file->store('public/' . $path, config('filesystems.default'));
 
         return substr($saved, 7);
+    }
+
+
+
+
+          public function addimage(Request $request)
+    {
+       $path = Storage::disk('images')->put('', $request->file('photo'));
+    // Save thumb
+    $img = InterventionImage::make($request->file('photo'))->widen(100);
+    Storage::disk('thumbs')->put($path, $img->encode());
+    //return($path);
+
+  $image = new club_image();
+  $image->post_id = $request->post;
+  $image->photo = $path;
+  $image->save();
+
+   
+return($request);
+
+    }
+
+
+    public function deleteimage(Request $request)
+    {
+
+  $image= club_image::find($request->id);
+  $image->delete();
+   
+return($request);
+
     }
 }

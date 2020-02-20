@@ -18,6 +18,10 @@ Route::POST('/updateetudin', 'Frent\homeController@updateetudin')->name('updatee
 
 Route::POST('/changepasse', 'Frent\homeController@changepasse')->name('changepasse');
 
+Route::get('/club', 'Frent\clubController@index')->name('club');
+Route::get('/clubshow/{id}', 'Frent\clubController@show')->name('clubshow');
+Route::get('/post/{id}', 'Frent\clubController@post')->name('post');
+
 
 
 
@@ -240,6 +244,9 @@ Route::group([
 
      Route::get('/printevent', 'DemandeEvenementsController@printevent')->name('printevent');
 
+
+Route::post('addimage','PostsController@addimage')->name('addimage');
+Route::post('deleteimage','PostsController@deleteimage')->name('deleteimage');
 
 
 

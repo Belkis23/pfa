@@ -34,5 +34,9 @@
     {
         "model-name": "Demande_Evenement",
         "resource-file": "demande__evenements.json"
+    },
+    {
+        "model-name": "club_image",
+        "resource-file": "club_images.json"
     }
 ]
