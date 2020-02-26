@@ -196,24 +196,6 @@ Route::group([
          ->name('salles.salle.destroy')->where('id', '[0-9]+');
 });
 
-Route::group([
-    'prefix' => 'demande__salles',
-], function () {
-    Route::get('/', 'DemandeSallesController@index')
-         ->name('demande__salles.demande__salle.index');
-    Route::get('/create','DemandeSallesController@create')
-         ->name('demande__salles.demande__salle.create');
-    Route::get('/show/{demandeSalle}','DemandeSallesController@show')
-         ->name('demande__salles.demande__salle.show')->where('id', '[0-9]+');
-    Route::get('/{demandeSalle}/edit','DemandeSallesController@edit')
-         ->name('demande__salles.demande__salle.edit')->where('id', '[0-9]+');
-    Route::post('/', 'DemandeSallesController@store')
-         ->name('demande__salles.demande__salle.store');
-    Route::put('demande__salle/{demandeSalle}', 'DemandeSallesController@update')
-         ->name('demande__salles.demande__salle.update')->where('id', '[0-9]+');
-    Route::delete('/demande__salle/{demandeSalle}','DemandeSallesController@destroy')
-         ->name('demande__salles.demande__salle.destroy')->where('id', '[0-9]+');
-});
 
 Route::group([
     'prefix' => 'demande__evenements',
@@ -239,9 +221,7 @@ Route::group([
 
    Route::get('/confirmedevent', 'DemandeEvenementsController@confirmed')->name('confirmedevent');
 
-   Route::get('/confirmedeventsalle', 'DemandeSallesController@confirmed')->name('confirmedeventsalle');
-   Route::get('/printsale', 'DemandeSallesController@printsale')->name('printsale');
-
+ 
      Route::get('/printevent', 'DemandeEvenementsController@printevent')->name('printevent');
 
 

@@ -46,6 +46,7 @@
                         <tr>
                             <th>Day</th>
                             <th>Club</th>
+                            <th>Salle</th>
                             <th>Name</th>
                             <th>Lieu</th>
                             <th>Date</th>
@@ -61,6 +62,7 @@
                         <tr>
                              <td>{{  date('l', strtotime($demandeEvenement->date))}}</td>
                             <td>{{ optional($demandeEvenement->club)->name }}</td>
+                            <td>{{ optional($demandeEvenement->salle)->name }}</td>
                             <td>{{ $demandeEvenement->Name }}</td>
                             <td>{{ $demandeEvenement->Lieu }}</td>
                             <td>{{ $demandeEvenement->date }}</td>

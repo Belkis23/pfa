@@ -30,7 +30,9 @@ class clubController extends Controller
          $etudiant = Etudiant::find($club->etudiant_id);
          $club->mombre = 0;
         //dd($today);
-$images = club_image::where('club_id',$club->id)->get();
+
+
+//$images = club_image::where('post_id',$club->id)->get();
 
         
          if(Auth::guard('etudiant')->check()){
@@ -67,7 +69,7 @@ $images = club_image::where('club_id',$club->id)->get();
 
           
 
-       
+    
 
         return view('Frent.club', compact('evenements','club','etudiant','classeFormations','posts'));
     }

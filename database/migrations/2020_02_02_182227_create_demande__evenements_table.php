@@ -17,6 +17,7 @@ class CreateDemandeEvenementsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->integer('club_id')->unsigned()->nullable()->index();
+            $table->integer('Salle_id')->unsigned()->nullable()->index();
             $table->string('Name', 255)->nullable();
             $table->string('Lieu')->nullable();
             $table->string('date')->nullable();
