@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Exception;
 use Auth;
 use App\Models\etudiant;
+use App\Models\Salle;
 class DemandeEvenementsController extends Controller
 {
 
@@ -41,7 +42,8 @@ class DemandeEvenementsController extends Controller
         }else{
             $clubs = Club::all();
         }
-        return view('demande__evenements.create', compact('clubs'));
+        $salles = Salle::all();
+        return view('demande__evenements.create', compact('clubs','salles'));
     }
 
     /**
@@ -77,7 +79,7 @@ class DemandeEvenementsController extends Controller
      */
     public function show($id)
     {
-        $demandeEvenement = Demande_Evenement::with('club')->findOrFail($id);
+        $demandeEvenement = Demande_Evenement::with('club','salle')->findOrFail($id);
 
         return view('demande__evenements.show', compact('demandeEvenement'));
     }
@@ -91,6 +93,7 @@ class DemandeEvenementsController extends Controller
      */
     public function edit($id)
     {
+         $salles = Salle::all();
         $demandeEvenement = Demande_Evenement::findOrFail($id);
        if(Auth::guard('etudiant')->check()){
             $clubs = club::where('etudiant_id',Auth::guard('etudiant')->user()->id)->with('etudiant')->get();
@@ -99,7 +102,7 @@ class DemandeEvenementsController extends Controller
             $clubs = Club::all();
         }
 
-        return view('demande__evenements.edit', compact('demandeEvenement','clubs'));
+        return view('demande__evenements.edit', compact('demandeEvenement','clubs','salles'));
     }
 
     /**
@@ -161,6 +164,8 @@ class DemandeEvenementsController extends Controller
     {
         $rules = [
                 'club_id' => 'nullable',
+                'Salle_id' => 'nullable',
+                
             'Name' => 'string|min:1|max:255|nullable',
             'Lieu' => 'string|min:1|nullable',
             'date' => 'string|min:1|nullable',

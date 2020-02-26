@@ -15,6 +15,26 @@
     </div>
 </div>
 
+
+
+<div class="form-group {{ $errors->has('Salle_id') ? 'has-error' : '' }}">
+    <label for="Salle_id" class="col-md-2 control-label">Salle</label>
+    <div class="col-md-10">
+        <select class="form-control" id="Salle_id" name="Salle_id">
+                <option value="" style="display: none;" {{ old('Salle_id', optional($demandeEvenement)->Salle_id ?: '') == '' ? 'selected' : '' }} disabled selected>Select salle</option>
+            @foreach ($salles as $key => $salle)
+                <option value="{{ $salle->id }}" {{ old('Salle_id', optional($demandeEvenement)->Salle_id) == $salle->id ? 'selected' : '' }}>
+                    {{ $salle->name }}
+                </option>
+            @endforeach
+        </select>
+        
+        {!! $errors->first('Salle_id', '<p class="help-block">:message</p>') !!}
+    </div>
+</div>
+
+
+
 <div class="form-group {{ $errors->has('Name') ? 'has-error' : '' }}">
     <label for="Name" class="col-md-2 control-label">Name</label>
     <div class="col-md-10">

@@ -216,12 +216,9 @@ return [
             'text' => 'Salle',
             'url'  => 'salles',
             'icon' => 'fas fa-fw fa-lock',
+            'can'  => 'admin',
         ],
-     [
-            'text' => 'Demande Salle',
-            'url'  => 'demande__salles',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
+   
          [
             'text' => 'Demande Evenement',
             'url'  => 'demande__evenements',

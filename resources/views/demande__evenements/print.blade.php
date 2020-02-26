@@ -172,6 +172,7 @@
             <tr>
                             <th>Day</th>
                             <th>Club</th>
+                            <th>Salle</th>
                             <th>Name</th>
                             <th>Lieu</th>
                             <th>Respensable</th>
@@ -189,6 +190,7 @@
 
                           <td>{{  date('l', strtotime($demandeEvenement->date))}}</td>
                             <td>{{ optional($demandeEvenement->club)->name }}</td>
+                            <td>{{ optional($demandeEvenement->salle)->name }}</td>
                             <td>{{ $demandeEvenement->Name }}</td>
                             <td>{{ $demandeEvenement->Lieu }}</td>
                             <td>
@@ -198,7 +200,7 @@
                               @endif
                               @endforeach
                             </td>
-                            <td>{{ $demandeEvenement->Date }}</td>
+                            <td>{{ $demandeEvenement->date }}</td>
 
                             <td>{{ $demandeEvenement->Start }}....{{ $demandeEvenement->End }}</td>
                             

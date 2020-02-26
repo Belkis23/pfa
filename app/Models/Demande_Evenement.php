@@ -30,6 +30,7 @@ class Demande_Evenement extends Model
     protected $fillable = [
                   'club_id',
                   'Name',
+                  'Salle_id',
                   'Lieu',
                   'date',
                   'Start',
@@ -60,7 +61,10 @@ class Demande_Evenement extends Model
     {
         return $this->belongsTo('App\Models\Club','club_id');
     }
-
+public function salle()
+    {
+        return $this->belongsTo('App\Models\Salle','Salle_id');
+    }
 
 
 }
